@@ -5,11 +5,12 @@ from app.models.schemas import CredibilityBreakdown
 
 WEIGHTS = {
     "ai_generation": 0.10,
-    "fact_evidence": 0.25,
-    "source_credibility": 0.15,
-    "misinfo_pattern": 0.15,
+    "fact_evidence": 0.20,
+    "source_credibility": 0.12,
+    "misinfo_pattern": 0.13,
     "emotional_language": 0.10,
-    "google_factcheck": 0.25,
+    # Prioritize independent external verification strongly.
+    "google_factcheck": 0.35,
 }
 
 _FALSE_PATTERNS = re.compile(
