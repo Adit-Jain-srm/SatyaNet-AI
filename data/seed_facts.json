@@ -1,0 +1,162 @@
+[
+  {
+    "text": "The Reserve Bank of India (RBI) has not banned UPI transactions. UPI continues to function normally as India's primary digital payment system.",
+    "source": "PIB Fact Check",
+    "url": "https://pib.gov.in/factcheck",
+    "language": "en",
+    "category": "finance",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "COVID-19 vaccines approved by WHO and DCGI have undergone rigorous clinical trials and are safe for human use.",
+    "source": "WHO India",
+    "url": "https://www.who.int/india",
+    "language": "en",
+    "category": "health",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "India's GDP growth rate for FY2025-26 is projected at 6.5% by the Reserve Bank of India.",
+    "source": "Reserve Bank of India",
+    "url": "https://rbi.org.in",
+    "language": "en",
+    "category": "economy",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "Aadhaar data is protected under the Aadhaar Act and UIDAI has not reported any data breach.",
+    "source": "UIDAI",
+    "url": "https://uidai.gov.in",
+    "language": "en",
+    "category": "technology",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "The Indian Space Research Organisation (ISRO) successfully launched the Chandrayaan-3 mission which landed on the Moon's south pole on August 23, 2023.",
+    "source": "ISRO",
+    "url": "https://www.isro.gov.in",
+    "language": "en",
+    "category": "science",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "5G radiation does not cause COVID-19 or any other disease. 5G technology uses non-ionizing radio waves that are safe for humans.",
+    "source": "WHO",
+    "url": "https://www.who.int/news-room/questions-and-answers/item/radiation-5g-mobile-networks-and-health",
+    "language": "en",
+    "category": "health",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "India's Election Commission uses EVMs (Electronic Voting Machines) that are standalone devices not connected to the internet and cannot be hacked remotely.",
+    "source": "Election Commission of India",
+    "url": "https://eci.gov.in",
+    "language": "en",
+    "category": "politics",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "The Citizenship Amendment Act (CAA) 2019 does not strip citizenship from any Indian citizen regardless of religion.",
+    "source": "Ministry of Home Affairs",
+    "url": "https://www.mha.gov.in",
+    "language": "en",
+    "category": "politics",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "भारतीय रिज़र्व बैंक ने UPI लेनदेन पर प्रतिबंध नहीं लगाया है। UPI भारत की प्रमुख डिजिटल भुगतान प्रणाली के रूप में सामान्य रूप से काम कर रही है।",
+    "source": "PIB Fact Check",
+    "url": "https://pib.gov.in/factcheck",
+    "language": "hi",
+    "category": "finance",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "WHO और DCGI द्वारा अनुमोदित COVID-19 टीकों ने कठोर क्लिनिकल परीक्षणों से गुजरे हैं और मानव उपयोग के लिए सुरक्षित हैं।",
+    "source": "WHO India",
+    "url": "https://www.who.int/india",
+    "language": "hi",
+    "category": "health",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "5G विकिरण से COVID-19 या कोई अन्य बीमारी नहीं होती। 5G तकनीक गैर-आयनीकरण रेडियो तरंगों का उपयोग करती है जो मनुष्यों के लिए सुरक्षित हैं।",
+    "source": "WHO",
+    "url": "https://www.who.int",
+    "language": "hi",
+    "category": "health",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "भारत की GDP विकास दर FY2025-26 के लिए भारतीय रिज़र्व बैंक द्वारा 6.5% अनुमानित है।",
+    "source": "भारतीय रिज़र्व बैंक",
+    "url": "https://rbi.org.in",
+    "language": "hi",
+    "category": "economy",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "இந்திய ரிசர்வ் வங்கி UPI பரிவர்த்தனைகளை தடை செய்யவில்லை. UPI இந்தியாவின் முதன்மை டிஜிட்டல் கட்டண முறையாக இயல்பாக செயல்படுகிறது.",
+    "source": "PIB Fact Check",
+    "url": "https://pib.gov.in/factcheck",
+    "language": "ta",
+    "category": "finance",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "WHO மற்றும் DCGI அங்கீகரித்த COVID-19 தடுப்பூசிகள் கடுமையான மருத்துவ பரிசோதனைகளுக்கு உட்பட்டவை மற்றும் மனித பயன்பாட்டிற்கு பாதுகாப்பானவை.",
+    "source": "WHO India",
+    "url": "https://www.who.int/india",
+    "language": "ta",
+    "category": "health",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "5G கதிர்வீச்சு COVID-19 அல்லது வேறு எந்த நோயையும் ஏற்படுத்தாது. 5G தொழில்நுட்பம் அயனியாக்கம் செய்யாத ரேடியோ அலைகளைப் பயன்படுத்துகிறது.",
+    "source": "WHO",
+    "url": "https://www.who.int",
+    "language": "ta",
+    "category": "health",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "Drinking cow urine does not cure cancer or any other disease. There is no scientific evidence supporting such claims.",
+    "source": "Indian Council of Medical Research",
+    "url": "https://www.icmr.gov.in",
+    "language": "en",
+    "category": "health",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "WhatsApp messages claiming free government laptops or smartphones are scams. The government distributes devices only through official state programs.",
+    "source": "PIB Fact Check",
+    "url": "https://pib.gov.in/factcheck",
+    "language": "en",
+    "category": "scams",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "The Indian government has not announced a nationwide ban on cryptocurrency. Crypto trading remains legal with applicable taxes.",
+    "source": "Ministry of Finance",
+    "url": "https://finmin.nic.in",
+    "language": "en",
+    "category": "finance",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "WhatsApp संदेश जो मुफ्त सरकारी लैपटॉप या स्मार्टफोन का दावा करते हैं वे घोटाले हैं। सरकार केवल आधिकारिक राज्य कार्यक्रमों के माध्यम से उपकरण वितरित करती है।",
+    "source": "PIB Fact Check",
+    "url": "https://pib.gov.in/factcheck",
+    "language": "hi",
+    "category": "scams",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "இலவச அரசு மடிக்கணினிகள் அல்லது ஸ்மார்ட்போன்கள் என்று கூறும் WhatsApp செய்திகள் மோசடிகள். அரசு அதிகாரப்பூர்வ மாநில திட்டங்கள் மூலம் மட்டுமே சாதனங்களை விநியோகிக்கிறது.",
+    "source": "PIB Fact Check",
+    "url": "https://pib.gov.in/factcheck",
+    "language": "ta",
+    "category": "scams",
+    "credibility_score": 0.95
+  }
+]
