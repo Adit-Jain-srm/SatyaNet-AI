@@ -1,0 +1,100 @@
+[
+  {
+    "original_claim": "Government has banned all UPI transactions and digital payments in India",
+    "debunk_summary": "UPI continues to operate normally. RBI has not issued any such directive. This is a recurring hoax designed to cause panic.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 125000
+  },
+  {
+    "original_claim": "5G towers cause COVID-19 and spread the virus through radiation",
+    "debunk_summary": "COVID-19 is caused by the SARS-CoV-2 virus, not by radio waves. 5G uses non-ionizing radiation that cannot carry viruses. WHO and ICNIRP have confirmed 5G is safe.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 890000
+  },
+  {
+    "original_claim": "COVID-19 vaccines contain microchips for government surveillance",
+    "debunk_summary": "Vaccines contain mRNA or viral vector components, adjuvants, and stabilizers. No microchips exist small enough to fit through a vaccine needle. This conspiracy theory has been debunked by multiple independent labs.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 1200000
+  },
+  {
+    "original_claim": "Drinking warm water with lemon cures COVID-19",
+    "debunk_summary": "While staying hydrated is important, no home remedy including warm lemon water can cure COVID-19. Treatment requires proper medical intervention.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 450000
+  },
+  {
+    "original_claim": "India's election EVMs were hacked by foreign agencies to change results",
+    "debunk_summary": "EVMs are standalone devices with no internet connectivity, WiFi, or Bluetooth. They cannot be remotely hacked. Multiple independent audits have verified EVM integrity.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 670000
+  },
+  {
+    "original_claim": "Free laptops are being distributed by the central government via WhatsApp link",
+    "debunk_summary": "This is a phishing scam. The central government has no such scheme. Official government schemes are announced through press conferences and gazette notifications, not WhatsApp.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 340000
+  },
+  {
+    "original_claim": "Aadhaar database has been hacked and 100 crore Indians data leaked",
+    "debunk_summary": "UIDAI has repeatedly denied any breach of the Aadhaar database. The system uses multi-layered security including encryption, and biometric data is stored in a secure vault.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 280000
+  },
+  {
+    "original_claim": "Cryptocurrency has been completely banned in India",
+    "debunk_summary": "India has not banned cryptocurrency. The Finance Act 2022 introduced a 30% tax on crypto income and 1% TDS on transactions, but trading remains legal.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 190000
+  },
+  {
+    "original_claim": "सरकार ने सभी UPI लेनदेन और डिजिटल भुगतान पर प्रतिबंध लगा दिया है",
+    "debunk_summary": "UPI सामान्य रूप से काम कर रही है। RBI ने ऐसा कोई निर्देश जारी नहीं किया है। यह एक बार-बार आने वाला धोखा है।",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 95000
+  },
+  {
+    "original_claim": "5G टावर COVID-19 फैलाते हैं और विकिरण से वायरस फैलता है",
+    "debunk_summary": "COVID-19 SARS-CoV-2 वायरस से होता है, रेडियो तरंगों से नहीं। 5G गैर-आयनीकरण विकिरण का उपयोग करता है। WHO ने पुष्टि की है कि 5G सुरक्षित है।",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 120000
+  },
+  {
+    "original_claim": "COVID-19 टीकों में सरकारी निगरानी के लिए माइक्रोचिप्स हैं",
+    "debunk_summary": "टीकों में mRNA या वायरल वेक्टर घटक होते हैं। कोई माइक्रोचिप इतनी छोटी नहीं है कि टीके की सुई से गुजर सके।",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 150000
+  },
+  {
+    "original_claim": "WhatsApp लिंक से केंद्र सरकार मुफ्त लैपटॉप बांट रही है",
+    "debunk_summary": "यह एक फिशिंग घोटाला है। केंद्र सरकार की ऐसी कोई योजना नहीं है। सरकारी योजनाएं प्रेस कॉन्फ्रेंस और गजट अधिसूचनाओं के माध्यम से घोषित की जाती हैं।",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 85000
+  },
+  {
+    "original_claim": "அரசு அனைத்து UPI பரிவர்த்தனைகளையும் டிஜிட்டல் கட்டணங்களையும் தடை செய்துள்ளது",
+    "debunk_summary": "UPI இயல்பாக செயல்படுகிறது. RBI அத்தகைய உத்தரவை வெளியிடவில்லை. இது பீதியை ஏற்படுத்த வடிவமைக்கப்பட்ட ஒரு மீண்டும் மீண்டும் வரும் பொய்.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 45000
+  },
+  {
+    "original_claim": "5G கோபுரங்கள் COVID-19 ஐ ஏற்படுத்துகின்றன",
+    "debunk_summary": "COVID-19 SARS-CoV-2 வைரஸால் ஏற்படுகிறது, ரேடியோ அலைகளால் அல்ல. 5G அயனியாக்கம் செய்யாத கதிர்வீச்சைப் பயன்படுத்துகிறது. WHO 5G பாதுகாப்பானது என்று உறுதிப்படுத்தியுள்ளது.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 35000
+  }
+]
