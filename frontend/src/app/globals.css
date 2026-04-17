@@ -70,8 +70,15 @@
   }
 }
 
-@keyframes gauge-fill {
-  from { stroke-dashoffset: 283; }
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.04; }
+  50% { opacity: 0.08; }
+}
+
+.skeleton {
+  @apply rounded-xl;
+  background: rgba(255, 255, 255, 0.04);
+  animation: skeleton-pulse 1.8s ease-in-out infinite;
 }
 
 @keyframes float {

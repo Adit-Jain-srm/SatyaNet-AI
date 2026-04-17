@@ -54,6 +54,13 @@
 - **Result**: Both completed in parallel, zero merge conflicts because they touch different directories
 - **Rule**: When adding a new modality (audio/video), backend service + frontend component + schema changes are independent and can parallelize
 
+### Lesson: Image analysis needs Vision AI, not pixel heuristics
+- **Problem**: Uploading a real photo showed "41 Credibility, Misleading" because heuristic pixel analysis (noise uniformity, symmetry, frequency) gives false positives on natural photos
+- **Root cause**: Noise uniformity in smooth areas of photos (skin, sky) looks similar to AI-generated uniformity. EXIF logic was also inverted (photos WITH EXIF marked as less suspicious, but threshold was wrong)
+- **Fix**: Replaced heuristic-only analyzer with GPT-4o Vision as primary analysis. Vision accurately identifies: real photos vs AI, reads text in images, detects manipulation, provides reasoning
+- **Architecture**: Vision returns structured JSON with description, ai_reasoning, extracted_text, text_claims, content_concerns; extracted text feeds into the claim verification pipeline
+- **Rule**: For image authenticity detection, use multimodal LLMs (GPT-4o Vision) not pixel statistics. Heuristics are a fallback, not a primary detector.
+
 ### Lesson: Frontend animation library
 - **Problem**: CSS-only animations lack interruptibility and stagger control
 - **Fix**: Use framer-motion with `layoutId`, `AnimatePresence`, spring physics for premium feel

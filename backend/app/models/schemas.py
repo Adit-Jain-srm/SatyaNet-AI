@@ -88,10 +88,18 @@ class NewsArticle(BaseModel):
     published_at: str = ""
 
 
+class QdrantStats(BaseModel):
+    collection: str
+    hits: int = 0
+    top_score: float = 0.0
+
+
 class AnalysisResponse(BaseModel):
     credibility_score: float = Field(ge=0.0, le=1.0)
     verdict: Verdict
+    verdict_reason: str = ""
     detected_language: str
+    detection_method: str = "langdetect"
     claims: list[ClaimResult] = Field(default_factory=list)
     breakdown: CredibilityBreakdown
     explanation: str
@@ -102,6 +110,8 @@ class AnalysisResponse(BaseModel):
     video_analysis: Optional[VideoAnalysisResult] = None
     news_articles: list[NewsArticle] = Field(default_factory=list)
     external_factchecks: list[ExternalFactCheck] = Field(default_factory=list)
+    processing_log: list[str] = Field(default_factory=list)
+    qdrant_stats: list[QdrantStats] = Field(default_factory=list)
 
 
 class ImageAnalysisResult(BaseModel):
@@ -110,6 +120,15 @@ class ImageAnalysisResult(BaseModel):
     is_manipulated: bool
     manipulation_probability: float = Field(ge=0.0, le=1.0)
     similar_verified_images: list[str] = Field(default_factory=list)
+    description: str = ""
+    ai_reasoning: str = ""
+    manipulation_reasoning: str = ""
+    extracted_text: str = ""
+    text_claims: list[str] = Field(default_factory=list)
+    content_concerns: list[str] = Field(default_factory=list)
+    is_real_photo: bool = True
+    context_flags: list[str] = Field(default_factory=list)
+    analysis_method: str = "heuristic"
 
 
 class IngestFactRequest(BaseModel):
