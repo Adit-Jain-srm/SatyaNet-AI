@@ -127,11 +127,11 @@ The credibility score (0-100) is computed from 6 weighted signals:
 | Signal | Weight | Source | Direction |
 |--------|--------|--------|-----------|
 | AI Generation | 10% | Image/audio analyzers | Lower is better (inverted) |
-| Fact Evidence | 25% | Qdrant `verified_facts` | Higher is better |
-| Source Credibility | 15% | Qdrant `source_credibility` | Higher is better |
-| Misinfo Pattern | 15% | Qdrant `misinfo_patterns` | Lower is better (inverted) |
+| Fact Evidence | 20% | Qdrant `verified_facts` | Higher is better |
+| Source Credibility | 12% | Qdrant `source_credibility` | Higher is better |
+| Misinfo Pattern | 13% | Qdrant `misinfo_patterns` | Lower is better (inverted) |
 | Emotional Language | 10% | GPT-4o propaganda analysis | Lower is better (inverted) |
-| Google Fact Check | 25% | Google Fact Check Tools API | Higher is better |
+| Google Fact Check | 35% | Google Fact Check Tools API | Higher is better (strongest external signal) |
 
 ### Verdict Scale
 
