@@ -67,9 +67,10 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
         detection_method = "user_override"
         log.append(f"Language: {language} (user specified)")
     else:
-        lang_input = text_content if text_content and not text_content.startswith("(") else "analysis"
-        language, detection_method = detect_language_with_method(lang_input)
-        log.append(f"Language detected: {language} via {detection_method}")
+        # For image/audio/video, richer text can be derived later in this function.
+        # We defer detection until modality-specific extraction is complete.
+        language = ""
+        detection_method = ""
 
     image_result = None
     ai_gen_score = 0.0
@@ -113,6 +114,11 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
         ai_gen_score = max(ai_gen_score, vid_analysis["deepfake_probability"])
         text_content = text_content or "(Video content submitted for analysis)"
         log.append(f"Video analysis: deepfake probability {vid_analysis['deepfake_probability']:.1%}")
+
+    if not request.language:
+        lang_input = text_content if text_content and not text_content.startswith("(") else "analysis"
+        language, detection_method = detect_language_with_method(lang_input)
+        log.append(f"Language detected: {language} via {detection_method}")
 
     claims = _safe_extract_claims(text_content)
     log.append(f"Claim extraction: {len(claims)} claim(s) found")

@@ -9,6 +9,9 @@ interface ImageAnalysisProps {
 
 export default function ImageAnalysis({ result }: ImageAnalysisProps) {
   const isVision = result.analysis_method === "gpt4o_vision";
+  const contentConcerns = Array.isArray(result.content_concerns) ? result.content_concerns : [];
+  const contextFlags = Array.isArray(result.context_flags) ? result.context_flags : [];
+  const extractedText = typeof result.extracted_text === "string" ? result.extracted_text : "";
 
   return (
     <motion.div
@@ -89,7 +92,7 @@ export default function ImageAnalysis({ result }: ImageAnalysisProps) {
       )}
 
       {/* Extracted text */}
-      {result.extracted_text && (
+      {extractedText && (
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -100,13 +103,13 @@ export default function ImageAnalysis({ result }: ImageAnalysisProps) {
             Text Found in Image
           </p>
           <p className="rounded-lg border border-cyan-500/10 bg-cyan-500/[0.04] px-3 py-2 text-xs italic leading-relaxed text-gray-300">
-            {result.extracted_text}
+            {extractedText}
           </p>
         </motion.div>
       )}
 
       {/* Content concerns */}
-      {result.content_concerns.length > 0 && (
+      {contentConcerns.length > 0 && (
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -117,7 +120,7 @@ export default function ImageAnalysis({ result }: ImageAnalysisProps) {
             Concerns
           </p>
           <div className="space-y-1">
-            {result.content_concerns.map((c, i) => (
+            {contentConcerns.map((c, i) => (
               <div
                 key={i}
                 className="flex items-start gap-2 rounded-md border border-amber-500/10 bg-amber-500/[0.04] px-2.5 py-1.5 text-[11px] text-amber-300/80"
@@ -133,9 +136,9 @@ export default function ImageAnalysis({ result }: ImageAnalysisProps) {
       )}
 
       {/* Context flags */}
-      {result.context_flags.length > 0 && (
+      {contextFlags.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
-          {result.context_flags.map((flag, i) => (
+          {contextFlags.map((flag, i) => (
             <span
               key={i}
               className="rounded-md border border-red-500/15 bg-red-500/[0.06] px-2 py-1 text-[10px] text-red-400"
@@ -160,6 +163,8 @@ function MetricCard({
   flag: boolean;
   delay: number;
 }) {
+  const safeValue = Number.isFinite(value) ? Math.max(0, Math.min(1, value)) : 0;
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -173,13 +178,13 @@ function MetricCard({
       </p>
       <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.04]">
         <motion.div
-          className={`h-full rounded-full ${value > 0.5 ? "bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.3)]" : "bg-satya-500 shadow-[0_0_8px_rgba(34,197,94,0.3)]"}`}
+          className={`h-full rounded-full ${safeValue > 0.5 ? "bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.3)]" : "bg-satya-500 shadow-[0_0_8px_rgba(34,197,94,0.3)]"}`}
           initial={{ width: 0 }}
-          animate={{ width: `${value * 100}%` }}
+          animate={{ width: `${safeValue * 100}%` }}
           transition={{ duration: 1, delay: 0.4 + delay, ease: [0.16, 1, 0.3, 1] }}
         />
       </div>
-      <p className="font-mono text-[11px] text-gray-600">{(value * 100).toFixed(1)}%</p>
+      <p className="font-mono text-[11px] text-gray-600">{(safeValue * 100).toFixed(1)}%</p>
     </motion.div>
   );
 }
