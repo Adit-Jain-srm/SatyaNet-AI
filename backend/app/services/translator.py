@@ -6,10 +6,10 @@ import time
 import httpx
 
 from app.config import settings
+from app.services.retry_utils import retry_call
 
 logger = logging.getLogger(__name__)
 
-SUPPORTED_LANGS = {"en", "hi", "ta"}
 API_VERSION = "3.0"
 
 _available: bool | None = None
@@ -46,7 +46,7 @@ def is_translator_available() -> bool:
             params={"api-version": API_VERSION},
             headers=_headers(),
             json=[{"text": "hello"}],
-            timeout=5.0,
+            timeout=settings.external_http_timeout_seconds,
         )
         _available = resp.status_code == 200
     except Exception:
@@ -59,27 +59,28 @@ def is_translator_available() -> bool:
 def detect_language_azure(text: str) -> tuple[str | None, str]:
     """Detect language using Azure Translator REST API.
 
-    Returns (language_code, method) where method is 'azure' or 'unavailable'.
-    language_code is None if detection fails or returns unsupported language.
+    Returns (language_code, method) where method is 'azure' or failure mode.
+    language_code is None only if detection fails.
     """
     if not is_translator_available():
         return None, "azure_unavailable"
 
     try:
-        resp = httpx.post(
-            f"{_base_url()}/detect",
-            params={"api-version": API_VERSION},
-            headers=_headers(),
-            json=[{"text": text[:500]}],
-            timeout=5.0,
+        resp = retry_call(
+            lambda: httpx.post(
+                f"{_base_url()}/detect",
+                params={"api-version": API_VERSION},
+                headers=_headers(),
+                json=[{"text": text[:500]}],
+                timeout=settings.external_http_timeout_seconds,
+            ),
+            attempts=settings.external_http_retries,
         )
         resp.raise_for_status()
         data = resp.json()
         if data and data[0].get("language"):
             lang = data[0]["language"]
-            if lang in SUPPORTED_LANGS:
-                return lang, "azure"
-            return None, "azure_unsupported"
+            return lang, "azure"
         return None, "azure_empty"
     except Exception as e:
         logger.warning("Azure language detection failed: %s", e)
@@ -95,16 +96,19 @@ def translate_text(text: str, from_lang: str, to_lang: str) -> str:
         return text
 
     try:
-        resp = httpx.post(
-            f"{_base_url()}/translate",
-            params={
-                "api-version": API_VERSION,
-                "from": from_lang,
-                "to": to_lang,
-            },
-            headers=_headers(),
-            json=[{"text": text[:5000]}],
-            timeout=10.0,
+        resp = retry_call(
+            lambda: httpx.post(
+                f"{_base_url()}/translate",
+                params={
+                    "api-version": API_VERSION,
+                    "from": from_lang,
+                    "to": to_lang,
+                },
+                headers=_headers(),
+                json=[{"text": text[:5000]}],
+                timeout=settings.external_http_timeout_seconds,
+            ),
+            attempts=settings.external_http_retries,
         )
         resp.raise_for_status()
         data = resp.json()

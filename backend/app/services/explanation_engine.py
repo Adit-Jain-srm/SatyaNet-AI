@@ -5,6 +5,7 @@ from openai import AzureOpenAI
 
 from app.config import settings
 from app.services.language_detector import get_language_name
+from app.services.retry_utils import retry_call
 
 logger = logging.getLogger(__name__)
 
@@ -121,30 +122,34 @@ def generate_explanation(
         external_text = "\n".join(lines)
 
     try:
-        response = client.chat.completions.create(
-            model=settings.azure_openai_deployment,
-            messages=[
-                {
-                    "role": "system",
-                    "content": EXPLANATION_SYSTEM.format(language=lang_name),
-                },
-                {
-                    "role": "user",
-                    "content": EXPLANATION_PROMPT.format(
-                        content=content[:500],
-                        claims=json.dumps(claims, ensure_ascii=False),
-                        credibility_score=f"{credibility_score:.2f}",
-                        evidence=evidence_text,
-                        misinfo_matches=misinfo_text,
-                        source_credibility=f"{source_credibility:.2f}",
-                        verdict=verdict,
-                        external_reviews=external_text,
-                    ),
-                },
-            ],
-            temperature=0.3,
-            max_tokens=2000,
-            response_format={"type": "json_object"},
+        response = retry_call(
+            lambda: client.chat.completions.create(
+                model=settings.azure_openai_deployment,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": EXPLANATION_SYSTEM.format(language=lang_name),
+                    },
+                    {
+                        "role": "user",
+                        "content": EXPLANATION_PROMPT.format(
+                            content=content[:500],
+                            claims=json.dumps(claims, ensure_ascii=False),
+                            credibility_score=f"{credibility_score:.2f}",
+                            evidence=evidence_text,
+                            misinfo_matches=misinfo_text,
+                            source_credibility=f"{source_credibility:.2f}",
+                            verdict=verdict,
+                            external_reviews=external_text,
+                        ),
+                    },
+                ],
+                temperature=0.3,
+                max_tokens=2000,
+                response_format={"type": "json_object"},
+                timeout=settings.openai_timeout_seconds,
+            ),
+            attempts=settings.openai_retries,
         )
 
         raw = response.choices[0].message.content or "{}"
@@ -163,3 +168,109 @@ def generate_explanation(
             "shareable_summary": f"SatyaNet Analysis: Credibility {credibility_score:.0%} — {verdict}",
             "verdict_reason": f"Credibility score of {credibility_score:.0%} falls in the {verdict} range.",
         }
+
+
+def score_credibility_with_llm(
+    *,
+    content: str,
+    claims: list[str],
+    language: str,
+    signals: dict,
+    evidence: list[dict],
+    misinfo_matches: list[dict],
+    external_reviews: list[dict] | None = None,
+) -> dict:
+    """
+    Ask GPT to produce the final credibility score and verdict directly.
+    This is intentionally non-weighted in code; the model decides based on context.
+    """
+    client = _get_client()
+    lang_name = get_language_name(language)
+
+    evidence_text = "\n".join(
+        f"- {e.get('text', '')[:220]} (source: {e.get('source', 'unknown')}, similarity: {e.get('relevance_score', 0):.0%})"
+        for e in evidence[:5]
+    ) or "No matching evidence found."
+
+    misinfo_text = "\n".join(
+        f"- Similarity {m.get('similarity', 0):.0%}: {m.get('original_claim', '')[:180]}"
+        for m in misinfo_matches[:3]
+    ) or "No misinfo pattern matches found."
+
+    external_text = "None found."
+    if external_reviews:
+        external_text = "\n".join(
+            f"- {r.get('publisher_name', 'Unknown')}: {r.get('rating', 'N/A')} ({r.get('url', '')})"
+            for r in external_reviews[:3]
+        )
+
+    prompt = f"""You are a fact-checking judge.
+
+Decide final credibility from available evidence and signals.
+Do NOT apply fixed weights. Use holistic reasoning.
+Respond in {lang_name}.
+
+CONTENT:
+{content[:700]}
+
+CLAIMS:
+{json.dumps(claims, ensure_ascii=False)}
+
+SIGNALS (for context, not fixed weights):
+{json.dumps(signals, ensure_ascii=False)}
+
+EVIDENCE:
+{evidence_text}
+
+MISINFO MATCHES:
+{misinfo_text}
+
+EXTERNAL FACT CHECKS:
+{external_text}
+
+Return ONLY JSON:
+{{
+  "credibility_score": 0.0,
+  "verdict": "true",
+  "verdict_reason": "single precise sentence"
+}}
+
+Rules:
+- credibility_score must be 0.0 to 1.0
+- verdict must be one of: true, false, misleading, unverified
+- verdict_reason must cite concrete evidence/signals
+"""
+
+    try:
+        response = retry_call(
+            lambda: client.chat.completions.create(
+                model=settings.azure_openai_deployment,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.1,
+                response_format={"type": "json_object"},
+                timeout=settings.openai_timeout_seconds,
+            ),
+            attempts=settings.openai_retries,
+        )
+        raw = response.choices[0].message.content or "{}"
+        result = json.loads(raw)
+
+        score = float(result.get("credibility_score", 0.5))
+        score = max(0.0, min(1.0, score))
+
+        verdict = str(result.get("verdict", "unverified")).strip().lower()
+        if verdict not in {"true", "false", "misleading", "unverified"}:
+            verdict = "unverified"
+
+        verdict_reason = str(result.get("verdict_reason", "")).strip()
+        if not verdict_reason:
+            verdict_reason = f"LLM assigned {verdict} with credibility {score:.0%}."
+
+        return {
+            "credibility_score": score,
+            "verdict": verdict,
+            "verdict_reason": verdict_reason,
+        }
+    except Exception as e:
+        logger.error("LLM credibility scoring failed: %s", e)
+        return {}

@@ -17,6 +17,16 @@ class Settings(BaseSettings):
     google_factcheck_api_key: str = ""
     news_api_key: str = ""
 
+    brightdata_api_token: str = ""
+    brightdata_serp_zone: str = "serp_api1"
+
+    external_http_timeout_seconds: float = 20.0
+    external_http_retries: int = 3
+    openai_timeout_seconds: float = 45.0
+    openai_retries: int = 2
+    qdrant_timeout_seconds: float = 20.0
+    qdrant_retries: int = 2
+
     embedding_model: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
     embedding_dim: int = 384
     seed_data_path: str = "../data"

@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8001";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export interface SourceScore {
   source: string;
@@ -28,6 +28,7 @@ export interface ClaimResult {
 
 export interface CredibilityBreakdown {
   ai_generation_score: number;
+  web_search_score: number;
   fact_evidence_score: number;
   source_credibility_score: number;
   misinfo_pattern_score: number;

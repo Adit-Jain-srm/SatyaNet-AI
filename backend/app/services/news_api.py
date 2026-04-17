@@ -4,6 +4,7 @@ import logging
 import httpx
 
 from app.config import settings
+from app.services.retry_utils import retry_call
 
 logger = logging.getLogger(__name__)
 
@@ -26,16 +27,19 @@ def search_news(query: str, language: str = "en", max_results: int = 5) -> list[
     lang_map = {"en": "en", "hi": "hi", "ta": "ta"}
 
     try:
-        resp = httpx.get(
-            NEWS_API_URL,
-            params={
-                "q": cleaned,
-                "apiKey": settings.news_api_key,
-                "pageSize": max_results,
-                "sortBy": "relevancy",
-                "language": lang_map.get(language, "en"),
-            },
-            timeout=8.0,
+        resp = retry_call(
+            lambda: httpx.get(
+                NEWS_API_URL,
+                params={
+                    "q": cleaned,
+                    "apiKey": settings.news_api_key,
+                    "pageSize": max_results,
+                    "sortBy": "relevancy",
+                    "language": lang_map.get(language, "en"),
+                },
+                timeout=settings.external_http_timeout_seconds,
+            ),
+            attempts=settings.external_http_retries,
         )
         resp.raise_for_status()
         data = resp.json()

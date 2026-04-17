@@ -4,6 +4,7 @@ import re
 import httpx
 
 from app.config import settings
+from app.services.retry_utils import retry_call
 
 logger = logging.getLogger(__name__)
 
@@ -44,15 +45,18 @@ def search_claims(query: str, language: str = "en") -> list[dict]:
     lang_code = lang_map.get(language, "en")
 
     try:
-        resp = httpx.get(
-            FACTCHECK_URL,
-            params={
-                "query": cleaned,
-                "key": settings.google_factcheck_api_key,
-                "languageCode": lang_code,
-                "pageSize": MAX_RESULTS,
-            },
-            timeout=8.0,
+        resp = retry_call(
+            lambda: httpx.get(
+                FACTCHECK_URL,
+                params={
+                    "query": cleaned,
+                    "key": settings.google_factcheck_api_key,
+                    "languageCode": lang_code,
+                    "pageSize": MAX_RESULTS,
+                },
+                timeout=settings.external_http_timeout_seconds,
+            ),
+            attempts=settings.external_http_retries,
         )
         resp.raise_for_status()
         data = resp.json()

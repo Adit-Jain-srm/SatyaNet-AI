@@ -1,27 +1,857 @@
 [
-  {"domain": "pib.gov.in PIB Fact Check official government fact checking", "trust_score": 0.95, "category": "government"},
-  {"domain": "who.int World Health Organization official health authority", "trust_score": 0.96, "category": "health"},
-  {"domain": "rbi.org.in Reserve Bank of India official banking authority", "trust_score": 0.95, "category": "finance"},
-  {"domain": "eci.gov.in Election Commission of India official election authority", "trust_score": 0.94, "category": "government"},
-  {"domain": "isro.gov.in Indian Space Research Organisation official space agency", "trust_score": 0.97, "category": "science"},
-  {"domain": "icmr.gov.in Indian Council of Medical Research official medical research", "trust_score": 0.95, "category": "health"},
-  {"domain": "thehindu.com The Hindu established newspaper of record", "trust_score": 0.82, "category": "news"},
-  {"domain": "ndtv.com NDTV established television news network", "trust_score": 0.78, "category": "news"},
-  {"domain": "indianexpress.com Indian Express established newspaper", "trust_score": 0.80, "category": "news"},
-  {"domain": "timesofindia.indiatimes.com Times of India largest English newspaper", "trust_score": 0.75, "category": "news"},
-  {"domain": "reuters.com Reuters international wire service news agency", "trust_score": 0.90, "category": "news"},
-  {"domain": "apnews.com Associated Press international wire service", "trust_score": 0.90, "category": "news"},
-  {"domain": "altnews.in AltNews independent Indian fact-checking organization", "trust_score": 0.88, "category": "fact-check"},
-  {"domain": "boomlive.in Boom Live IFCN certified fact-checking organization India", "trust_score": 0.87, "category": "fact-check"},
-  {"domain": "factly.in Factly IFCN certified Indian fact-checking", "trust_score": 0.86, "category": "fact-check"},
-  {"domain": "vishvasnews.com Vishvas News fact-checking in Indian languages", "trust_score": 0.85, "category": "fact-check"},
-  {"domain": "opindia.com OpIndia political opinion website", "trust_score": 0.35, "category": "opinion"},
-  {"domain": "thewire.in The Wire independent news website", "trust_score": 0.72, "category": "news"},
-  {"domain": "swarajyamag.com Swarajya Magazine political opinion magazine", "trust_score": 0.40, "category": "opinion"},
-  {"domain": "facebook.com social media platform user-generated content", "trust_score": 0.20, "category": "social-media"},
-  {"domain": "whatsapp.com messaging platform unverified forwards", "trust_score": 0.10, "category": "social-media"},
-  {"domain": "twitter.com X social media platform mixed reliability", "trust_score": 0.25, "category": "social-media"},
-  {"domain": "youtube.com video platform user-generated content mixed reliability", "trust_score": 0.25, "category": "social-media"},
-  {"domain": "tiktok.com short video platform user-generated content low reliability", "trust_score": 0.15, "category": "social-media"},
-  {"domain": "reddit.com forum platform user-generated community content", "trust_score": 0.30, "category": "social-media"}
+  {
+    "domain": "pib.gov.in PIB Fact Check official government fact checking",
+    "trust_score": 0.95,
+    "category": "government"
+  },
+  {
+    "domain": "who.int World Health Organization official health authority",
+    "trust_score": 0.96,
+    "category": "health"
+  },
+  {
+    "domain": "rbi.org.in Reserve Bank of India official banking authority",
+    "trust_score": 0.95,
+    "category": "finance"
+  },
+  {
+    "domain": "eci.gov.in Election Commission of India official election authority",
+    "trust_score": 0.94,
+    "category": "government"
+  },
+  {
+    "domain": "isro.gov.in Indian Space Research Organisation official space agency",
+    "trust_score": 0.97,
+    "category": "science"
+  },
+  {
+    "domain": "icmr.gov.in Indian Council of Medical Research official medical research",
+    "trust_score": 0.95,
+    "category": "health"
+  },
+  {
+    "domain": "thehindu.com The Hindu established newspaper of record",
+    "trust_score": 0.82,
+    "category": "news"
+  },
+  {
+    "domain": "ndtv.com NDTV established television news network",
+    "trust_score": 0.78,
+    "category": "news"
+  },
+  {
+    "domain": "indianexpress.com Indian Express established newspaper",
+    "trust_score": 0.8,
+    "category": "news"
+  },
+  {
+    "domain": "timesofindia.indiatimes.com Times of India largest English newspaper",
+    "trust_score": 0.75,
+    "category": "news"
+  },
+  {
+    "domain": "reuters.com Reuters international wire service news agency",
+    "trust_score": 0.9,
+    "category": "news"
+  },
+  {
+    "domain": "apnews.com Associated Press international wire service",
+    "trust_score": 0.9,
+    "category": "news"
+  },
+  {
+    "domain": "altnews.in AltNews independent Indian fact-checking organization",
+    "trust_score": 0.88,
+    "category": "fact-check"
+  },
+  {
+    "domain": "boomlive.in Boom Live IFCN certified fact-checking organization India",
+    "trust_score": 0.87,
+    "category": "fact-check"
+  },
+  {
+    "domain": "factly.in Factly IFCN certified Indian fact-checking",
+    "trust_score": 0.86,
+    "category": "fact-check"
+  },
+  {
+    "domain": "vishvasnews.com Vishvas News fact-checking in Indian languages",
+    "trust_score": 0.85,
+    "category": "fact-check"
+  },
+  {
+    "domain": "opindia.com OpIndia political opinion website",
+    "trust_score": 0.35,
+    "category": "opinion"
+  },
+  {
+    "domain": "thewire.in The Wire independent news website",
+    "trust_score": 0.72,
+    "category": "news"
+  },
+  {
+    "domain": "swarajyamag.com Swarajya Magazine political opinion magazine",
+    "trust_score": 0.4,
+    "category": "opinion"
+  },
+  {
+    "domain": "facebook.com social media platform user-generated content",
+    "trust_score": 0.2,
+    "category": "social-media"
+  },
+  {
+    "domain": "whatsapp.com messaging platform unverified forwards",
+    "trust_score": 0.1,
+    "category": "social-media"
+  },
+  {
+    "domain": "twitter.com X social media platform mixed reliability",
+    "trust_score": 0.25,
+    "category": "social-media"
+  },
+  {
+    "domain": "youtube.com video platform user-generated content mixed reliability",
+    "trust_score": 0.25,
+    "category": "social-media"
+  },
+  {
+    "domain": "tiktok.com short video platform user-generated content low reliability",
+    "trust_score": 0.15,
+    "category": "social-media"
+  },
+  {
+    "domain": "reddit.com forum platform user-generated community content",
+    "trust_score": 0.3,
+    "category": "social-media"
+  },
+  {
+    "domain": "niti.gov.in NITI Aayog public policy think tank of the Government of India",
+    "trust_score": 0.96,
+    "category": "government"
+  },
+  {
+    "domain": "mea.gov.in Ministry of External Affairs official foreign policy portal",
+    "trust_score": 0.98,
+    "category": "government"
+  },
+  {
+    "domain": "mathrubhumi.com Mathrubhumi leading Malayalam daily",
+    "trust_score": 0.81,
+    "category": "news"
+  },
+  {
+    "domain": "manoramaonline.com Malayala Manorama established Malayalam newspaper",
+    "trust_score": 0.8,
+    "category": "news"
+  },
+  {
+    "domain": "dinamalar.com Dinamalar established Tamil daily",
+    "trust_score": 0.77,
+    "category": "news"
+  },
+  {
+    "domain": "dainikbhaskar.com Dainik Bhaskar widely read Hindi newspaper",
+    "trust_score": 0.78,
+    "category": "news"
+  },
+  {
+    "domain": "bbc.com British Broadcasting Corporation international news broadcaster",
+    "trust_score": 0.91,
+    "category": "news"
+  },
+  {
+    "domain": "aljazeera.com Al Jazeera international news network",
+    "trust_score": 0.85,
+    "category": "news"
+  },
+  {
+    "domain": "snopes.com Snopes international fact-checking website",
+    "trust_score": 0.89,
+    "category": "fact-check"
+  },
+  {
+    "domain": "quora.com Quora Q&A platform user-generated content",
+    "trust_score": 0.4,
+    "category": "social-media"
+  },
+  {
+    "domain": "telegram.org Telegram messaging platform unverified forwards",
+    "trust_score": 0.15,
+    "category": "social-media"
+  },
+  {
+    "domain": "scroll.in Scroll.in independent digital news organization",
+    "trust_score": 0.75,
+    "category": "news"
+  },
+  {
+    "domain": "siasat.com The Siasat Daily established newspaper",
+    "trust_score": 0.73,
+    "category": "news"
+  },
+  {
+    "domain": "newslaundry.com Newslaundry independent news media and critique",
+    "trust_score": 0.82,
+    "category": "news"
+  },
+  {
+    "domain": "thenewsminute.com The News Minute independent digital news platform focusing on South India",
+    "trust_score": 0.84,
+    "category": "news"
+  },
+  {
+    "domain": "eenadu.net Eenadu largest circulated Telugu daily",
+    "trust_score": 0.79,
+    "category": "news"
+  },
+  {
+    "domain": "sakshi.com Sakshi established Telugu daily newspaper",
+    "trust_score": 0.76,
+    "category": "news"
+  },
+  {
+    "domain": "anandabazar.com Anandabazar Patrika leading Bengali daily newspaper",
+    "trust_score": 0.81,
+    "category": "news"
+  },
+  {
+    "domain": "lokmat.com Lokmat leading Marathi daily newspaper",
+    "trust_score": 0.8,
+    "category": "news"
+  },
+  {
+    "domain": "nature.com Nature leading international weekly journal of science",
+    "trust_score": 0.98,
+    "category": "science"
+  },
+  {
+    "domain": "science.org Science premier global science weekly",
+    "trust_score": 0.98,
+    "category": "science"
+  },
+  {
+    "domain": "thelancet.com The Lancet independent international general medical journal",
+    "trust_score": 0.97,
+    "category": "health"
+  },
+  {
+    "domain": "fakingnews.com Faking News Indian news satire website",
+    "trust_score": 0.05,
+    "category": "satire"
+  },
+  {
+    "domain": "theonion.com The Onion American satirical digital media",
+    "trust_score": 0.05,
+    "category": "satire"
+  },
+  {
+    "domain": "pinterest.com Pinterest image sharing platform user-generated content",
+    "trust_score": 0.2,
+    "category": "social-media"
+  },
+  {
+    "domain": "kooapp.com Koo Indian microblogging platform mixed reliability user content",
+    "trust_score": 0.25,
+    "category": "social-media"
+  },
+  {
+    "domain": "cyberpost39.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.49,
+    "category": "entertainment"
+  },
+  {
+    "domain": "heraldchronicle91.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.91,
+    "category": "technology"
+  },
+  {
+    "domain": "thechronicle36.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.69,
+    "category": "entertainment"
+  },
+  {
+    "domain": "dailywire35.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.64,
+    "category": "politics"
+  },
+  {
+    "domain": "timesofgazette7.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.85,
+    "category": "health"
+  },
+  {
+    "domain": "truepost47.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.63,
+    "category": "sports"
+  },
+  {
+    "domain": "dailyjournal13.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.56,
+    "category": "entertainment"
+  },
+  {
+    "domain": "globalbulletin22.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.53,
+    "category": "entertainment"
+  },
+  {
+    "domain": "cyberbulletin66.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.53,
+    "category": "sports"
+  },
+  {
+    "domain": "truepost20.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.73,
+    "category": "finance"
+  },
+  {
+    "domain": "regionalgazette4.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.65,
+    "category": "sports"
+  },
+  {
+    "domain": "localpost6.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.68,
+    "category": "news"
+  },
+  {
+    "domain": "dailywire34.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.64,
+    "category": "politics"
+  },
+  {
+    "domain": "globaltribune77.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.69,
+    "category": "entertainment"
+  },
+  {
+    "domain": "timesoftimes1.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.59,
+    "category": "sports"
+  },
+  {
+    "domain": "worldjournal55.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.82,
+    "category": "news"
+  },
+  {
+    "domain": "cyberbulletin15.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.78,
+    "category": "technology"
+  },
+  {
+    "domain": "thejournal60.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.84,
+    "category": "news"
+  },
+  {
+    "domain": "thenews99.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.46,
+    "category": "entertainment"
+  },
+  {
+    "domain": "cyberbulletin72.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.67,
+    "category": "news"
+  },
+  {
+    "domain": "worldwire70.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.46,
+    "category": "entertainment"
+  },
+  {
+    "domain": "dailyjournal80.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.7,
+    "category": "technology"
+  },
+  {
+    "domain": "globalvoice47.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.53,
+    "category": "entertainment"
+  },
+  {
+    "domain": "nationalgazette73.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.55,
+    "category": "entertainment"
+  },
+  {
+    "domain": "thepost58.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.95,
+    "category": "finance"
+  },
+  {
+    "domain": "nationalvoice52.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.5,
+    "category": "sports"
+  },
+  {
+    "domain": "thetribune79.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.75,
+    "category": "news"
+  },
+  {
+    "domain": "nationalpost87.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.42,
+    "category": "sports"
+  },
+  {
+    "domain": "worldchronicle85.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.82,
+    "category": "news"
+  },
+  {
+    "domain": "dailypost21.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.55,
+    "category": "news"
+  },
+  {
+    "domain": "truenews40.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.41,
+    "category": "entertainment"
+  },
+  {
+    "domain": "truejournal80.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.53,
+    "category": "news"
+  },
+  {
+    "domain": "heraldtimes13.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.92,
+    "category": "health"
+  },
+  {
+    "domain": "regionalnews53.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.47,
+    "category": "entertainment"
+  },
+  {
+    "domain": "nationalvoice28.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.6,
+    "category": "entertainment"
+  },
+  {
+    "domain": "worldgazette88.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.59,
+    "category": "news"
+  },
+  {
+    "domain": "regionaltimes14.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.56,
+    "category": "entertainment"
+  },
+  {
+    "domain": "thenews38.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.46,
+    "category": "entertainment"
+  },
+  {
+    "domain": "truechronicle93.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.8,
+    "category": "technology"
+  },
+  {
+    "domain": "regionaljournal15.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.78,
+    "category": "politics"
+  },
+  {
+    "domain": "heraldwire12.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.82,
+    "category": "health"
+  },
+  {
+    "domain": "heraldbulletin33.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.86,
+    "category": "technology"
+  },
+  {
+    "domain": "localjournal88.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.88,
+    "category": "finance"
+  },
+  {
+    "domain": "localnews92.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.92,
+    "category": "technology"
+  },
+  {
+    "domain": "worldwire34.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.51,
+    "category": "sports"
+  },
+  {
+    "domain": "heraldnews37.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.59,
+    "category": "politics"
+  },
+  {
+    "domain": "thetribune73.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.49,
+    "category": "sports"
+  },
+  {
+    "domain": "regionaltimes30.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.87,
+    "category": "technology"
+  },
+  {
+    "domain": "thechronicle37.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.75,
+    "category": "health"
+  },
+  {
+    "domain": "globaltimes38.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.88,
+    "category": "finance"
+  },
+  {
+    "domain": "worldpost32.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.77,
+    "category": "finance"
+  },
+  {
+    "domain": "globalwire65.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.44,
+    "category": "entertainment"
+  },
+  {
+    "domain": "worldtimes18.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.57,
+    "category": "sports"
+  },
+  {
+    "domain": "truepost10.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.68,
+    "category": "entertainment"
+  },
+  {
+    "domain": "thenews69.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.54,
+    "category": "sports"
+  },
+  {
+    "domain": "timesofnews84.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.72,
+    "category": "technology"
+  },
+  {
+    "domain": "localwire9.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.62,
+    "category": "entertainment"
+  },
+  {
+    "domain": "worldwire74.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.47,
+    "category": "sports"
+  },
+  {
+    "domain": "cyberchronicle22.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.4,
+    "category": "sports"
+  },
+  {
+    "domain": "worldvoice71.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.92,
+    "category": "health"
+  },
+  {
+    "domain": "globalwire77.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.79,
+    "category": "finance"
+  },
+  {
+    "domain": "timesofbulletin97.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.9,
+    "category": "technology"
+  },
+  {
+    "domain": "cybervoice49.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.69,
+    "category": "politics"
+  },
+  {
+    "domain": "localwire96.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.83,
+    "category": "health"
+  },
+  {
+    "domain": "regionalvoice98.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.41,
+    "category": "entertainment"
+  },
+  {
+    "domain": "cybernews2.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.7,
+    "category": "entertainment"
+  },
+  {
+    "domain": "thenews73.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.82,
+    "category": "finance"
+  },
+  {
+    "domain": "regionaltimes70.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.59,
+    "category": "sports"
+  },
+  {
+    "domain": "worldjournal48.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.78,
+    "category": "technology"
+  },
+  {
+    "domain": "dailytribune30.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.46,
+    "category": "sports"
+  },
+  {
+    "domain": "globaltimes12.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.78,
+    "category": "health"
+  },
+  {
+    "domain": "nationalbulletin16.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.88,
+    "category": "technology"
+  },
+  {
+    "domain": "heraldtimes28.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.78,
+    "category": "health"
+  },
+  {
+    "domain": "truepost36.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.89,
+    "category": "finance"
+  },
+  {
+    "domain": "heraldvoice66.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.72,
+    "category": "politics"
+  },
+  {
+    "domain": "heraldpost75.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.87,
+    "category": "health"
+  },
+  {
+    "domain": "heraldgazette22.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.73,
+    "category": "finance"
+  },
+  {
+    "domain": "thenews28.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.91,
+    "category": "health"
+  },
+  {
+    "domain": "timesofwire87.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.58,
+    "category": "sports"
+  },
+  {
+    "domain": "localbulletin23.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.62,
+    "category": "politics"
+  },
+  {
+    "domain": "nationalpost26.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.55,
+    "category": "politics"
+  },
+  {
+    "domain": "thewire5.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.85,
+    "category": "health"
+  },
+  {
+    "domain": "thenews72.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.61,
+    "category": "news"
+  },
+  {
+    "domain": "worldbulletin29.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.84,
+    "category": "technology"
+  },
+  {
+    "domain": "timesofjournal37.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.56,
+    "category": "politics"
+  },
+  {
+    "domain": "regionalpost58.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.61,
+    "category": "entertainment"
+  },
+  {
+    "domain": "timesofbulletin77.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.54,
+    "category": "sports"
+  },
+  {
+    "domain": "truejournal51.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.94,
+    "category": "technology"
+  },
+  {
+    "domain": "cyberwire1.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.84,
+    "category": "health"
+  },
+  {
+    "domain": "regionaljournal36.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.59,
+    "category": "news"
+  },
+  {
+    "domain": "timesofnews74.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.44,
+    "category": "entertainment"
+  },
+  {
+    "domain": "worldtribune81.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.83,
+    "category": "finance"
+  },
+  {
+    "domain": "timesofpost59.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.51,
+    "category": "sports"
+  },
+  {
+    "domain": "localwire62.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.84,
+    "category": "technology"
+  },
+  {
+    "domain": "heraldbulletin36.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.86,
+    "category": "health"
+  },
+  {
+    "domain": "worldbulletin76.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.63,
+    "category": "politics"
+  },
+  {
+    "domain": "regionalvoice65.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.85,
+    "category": "technology"
+  },
+  {
+    "domain": "worldvoice40.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.88,
+    "category": "technology"
+  },
+  {
+    "domain": "cybergazette80.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.58,
+    "category": "sports"
+  },
+  {
+    "domain": "thejournal10.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.71,
+    "category": "news"
+  },
+  {
+    "domain": "nationaltimes44.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.85,
+    "category": "health"
+  },
+  {
+    "domain": "worldwire80.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.6,
+    "category": "sports"
+  },
+  {
+    "domain": "thewire4.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.59,
+    "category": "news"
+  },
+  {
+    "domain": "heraldpost59.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.59,
+    "category": "politics"
+  },
+  {
+    "domain": "cybernews14.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.73,
+    "category": "finance"
+  },
+  {
+    "domain": "thewire71.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.48,
+    "category": "entertainment"
+  },
+  {
+    "domain": "cyberjournal22.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.78,
+    "category": "news"
+  },
+  {
+    "domain": "timesofjournal60.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.6,
+    "category": "sports"
+  },
+  {
+    "domain": "dailybulletin89.news synthetically generated domain for expanded dataset",
+    "trust_score": 0.88,
+    "category": "finance"
+  },
+  {
+    "domain": "heraldvoice60.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.68,
+    "category": "politics"
+  },
+  {
+    "domain": "worldgazette19.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.54,
+    "category": "entertainment"
+  },
+  {
+    "domain": "nationaltribune99.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.69,
+    "category": "news"
+  },
+  {
+    "domain": "worldchronicle74.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.53,
+    "category": "entertainment"
+  },
+  {
+    "domain": "dailytimes49.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.76,
+    "category": "politics"
+  },
+  {
+    "domain": "timesofgazette23.net synthetically generated domain for expanded dataset",
+    "trust_score": 0.84,
+    "category": "politics"
+  },
+  {
+    "domain": "dailytribune91.com synthetically generated domain for expanded dataset",
+    "trust_score": 0.74,
+    "category": "news"
+  },
+  {
+    "domain": "truetimes56.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.88,
+    "category": "finance"
+  },
+  {
+    "domain": "localnews47.org synthetically generated domain for expanded dataset",
+    "trust_score": 0.69,
+    "category": "sports"
+  },
+  {
+    "domain": "truebulletin49.co.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.53,
+    "category": "politics"
+  },
+  {
+    "domain": "truetribune26.in synthetically generated domain for expanded dataset",
+    "trust_score": 0.71,
+    "category": "technology"
+  }
 ]

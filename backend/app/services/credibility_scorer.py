@@ -5,12 +5,12 @@ from app.models.schemas import CredibilityBreakdown
 
 WEIGHTS = {
     "ai_generation": 0.10,
-    "fact_evidence": 0.20,
-    "source_credibility": 0.12,
-    "misinfo_pattern": 0.13,
-    "emotional_language": 0.10,
-    # Prioritize independent external verification strongly.
-    "google_factcheck": 0.35,
+    "web_search": 0.25,  # Direct web verification is highly reliable for factual claims
+    "fact_evidence": 0.15,
+    "source_credibility": 0.10,
+    "misinfo_pattern": 0.12,
+    "emotional_language": 0.08,
+    "google_factcheck": 0.20,
 }
 
 _FALSE_PATTERNS = re.compile(
@@ -37,9 +37,11 @@ def compute_credibility(
     misinfo_pattern_score: float,
     emotional_language_score: float,
     google_factcheck_score: float = 0.5,
+    web_search_score: float = 0.5,
 ) -> tuple[float, CredibilityBreakdown]:
     breakdown = CredibilityBreakdown(
         ai_generation_score=_clamp(ai_generation_score),
+        web_search_score=_clamp(web_search_score),
         fact_evidence_score=_clamp(fact_evidence_score),
         source_credibility_score=_clamp(source_credibility_score),
         misinfo_pattern_score=_clamp(misinfo_pattern_score),
@@ -49,6 +51,7 @@ def compute_credibility(
 
     credibility = (
         (1 - breakdown.ai_generation_score) * WEIGHTS["ai_generation"]
+        + breakdown.web_search_score * WEIGHTS["web_search"]
         + breakdown.fact_evidence_score * WEIGHTS["fact_evidence"]
         + breakdown.source_credibility_score * WEIGHTS["source_credibility"]
         + (1 - breakdown.misinfo_pattern_score) * WEIGHTS["misinfo_pattern"]
@@ -60,7 +63,19 @@ def compute_credibility(
     return credibility, breakdown
 
 
-def score_to_verdict(score: float) -> str:
+def score_to_verdict(score: float, web_search_score: float = 0.5, ai_generation_score: float = 0.0) -> str:
+    """
+    Determine verdict based on credibility score with smart overrides for web evidence.
+    
+    When web search provides strong evidence (>0.8) for a factual claim,
+    it takes precedence over other signals, effectively verifying the claim.
+    """
+    
+    # PRIMARY: If web search has strong confidence and content is not AI-generated, treat as verified
+    if web_search_score > 0.80 and ai_generation_score < 0.5:
+        return "true"
+    
+    # SECONDARY: Regular thresholds
     if score >= 0.75:
         return "true"
     if score >= 0.50:
@@ -77,10 +92,18 @@ def build_verdict_reason(
     misinfo_count: int,
     external_count: int,
     evidence_count: int,
+    web_evidence_found: bool = False,
 ) -> str:
     """Build a human-readable reason for the verdict based on the dominant signals."""
     reasons: list[str] = []
 
+    # Prioritize web search evidence when verdict is determined by web search
+    if verdict == "true" and breakdown.web_search_score > 0.80:
+        reasons.append(f"verified via direct web search ({breakdown.web_search_score:.0%} confidence)")
+        return f"Rated 'Verified True' because: {reasons[0]}."
+    
+    if web_evidence_found and breakdown.web_search_score > 0.7:
+        reasons.append(f"verified via web search ({breakdown.web_search_score:.0%} confidence)")
     if breakdown.misinfo_pattern_score > 0.7:
         reasons.append(f"matches known debunked misinformation ({breakdown.misinfo_pattern_score:.0%} similarity)")
     if breakdown.google_factcheck_score < 0.3 and external_count > 0:
@@ -95,11 +118,11 @@ def build_verdict_reason(
         reasons.append("comes from a highly trusted source")
     if breakdown.source_credibility_score < 0.3:
         reasons.append("source has low credibility rating")
-    if breakdown.fact_evidence_score < 0.2 and evidence_count == 0:
-        reasons.append("no matching verified evidence found in database")
+    if breakdown.fact_evidence_score < 0.2 and evidence_count == 0 and not web_evidence_found:
+        reasons.append("no matching verified evidence found in database or web search")
 
     if not reasons:
-        reasons.append(f"overall credibility score of {score:.0%} across 6 weighted signals")
+        reasons.append(f"overall credibility score of {score:.0%} across weighted signals")
 
     verdict_labels = {
         "true": "Verified True",

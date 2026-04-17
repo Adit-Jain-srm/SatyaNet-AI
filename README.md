@@ -12,13 +12,16 @@ Built by **Team Arize**.
 
 - **Three-Layer Pipeline** -- Detection, Understanding, Response (not just a binary true/false label)
 - **Multi-Modal** -- Text, image (GPT-4o Vision), audio, video, and URL analysis
-- **Multilingual** -- English, Hindi, Tamil with automatic language detection (Azure Translator + langdetect fallback)
+- **Multilingual** -- Automatic detection supports any detected language code (Azure Translator + langdetect fallback)
 - **RAG Fact-Checking** -- Retrieval-Augmented Generation via Qdrant vector search across 3 collections with payload filtering
-- **External Fact-Check Aggregation** -- Google Fact Check Tools API + News API for live evidence
-- **Reasoned Verdicts** -- Every verdict includes a human-readable reason citing specific evidence and signals
+- **Live Web Verification** -- Bright Data SERP retrieval + GPT web evidence extraction for time-sensitive claims
+- **External Fact-Check Aggregation** -- Google Fact Check Tools API + News API for corroboration
+- **GPT Final Judge** -- Final credibility score and verdict come from GPT holistic reasoning (non-weighted in code)
+- **Reasoned Verdicts** -- Every verdict includes a human-readable reason citing concrete evidence/signals
 - **Explainability** -- Structured "Why This Rating" explanations with chain-of-thought LLM reasoning
 - **Counter-Content** -- Verified alternative information with source citations, WhatsApp-shareable summaries
 - **Transparency** -- Full pipeline trace showing every step of the analysis process
+- **Reliability Hardening** -- Retry + timeout controls across OpenAI, Qdrant, Bright Data, News API, Google Fact Check, and Translator calls
 
 ---
 
@@ -59,15 +62,24 @@ User Input (Text / Image / Audio / Video / URL)
 |   source_credibility [score-thresholded]     |
 |                                              |
 | + Cross-lingual search (translate -> EN)     |
+| + Bright Data web retrieval + GPT extraction |
 | + Google Fact Check Tools API                |
 | + News API (live articles)                   |
 +---------------------+------------------------+
                       |
                       v
 +---------------------------+
-| 6-Signal Credibility      |
-| Scoring Engine            |
-| + Verdict Reasoning       |
+| Diagnostic Signals        |
+| (AI/web/fact/source/      |
+| misinfo/emotion/GFC)      |
++------------+--------------+
+             |
+             v
++---------------------------+
+| GPT Final Judge           |
+| - credibility_score       |
+| - verdict                 |
+| - verdict_reason          |
 +------------+--------------+
              |
              v
@@ -117,34 +129,72 @@ Qdrant serves as the **central knowledge backbone** with three purpose-built col
 - Batch upsert for bulk data ingestion
 - Multi-collection querying (3 parallel searches per claim)
 - Cross-lingual search: non-English claims are translated to English and searched again, results merged and deduplicated
+- Configurable timeout + retry behavior to reduce transient network failures
 
 ---
 
-## Credibility Scoring
+## Credibility Decisioning
 
-The credibility score (0-100) is computed from 6 weighted signals:
+SatyaNet now uses a two-stage decision strategy:
 
-| Signal | Weight | Source | Direction |
-|--------|--------|--------|-----------|
-| AI Generation | 10% | Image/audio analyzers | Lower is better (inverted) |
-| Fact Evidence | 20% | Qdrant `verified_facts` | Higher is better |
-| Source Credibility | 12% | Qdrant `source_credibility` | Higher is better |
-| Misinfo Pattern | 13% | Qdrant `misinfo_patterns` | Lower is better (inverted) |
-| Emotional Language | 10% | GPT-4o propaganda analysis | Lower is better (inverted) |
-| Google Fact Check | 35% | Google Fact Check Tools API | Higher is better (strongest external signal) |
+1. **Diagnostic signal layer** computes evidence/safety signals for transparency:
+   - AI generation score
+   - Web search verification score
+   - Fact evidence score
+   - Source credibility score
+   - Misinfo pattern score
+   - Emotional language score
+   - Google fact-check score
 
-### Verdict Scale
+2. **GPT final judge layer** receives these signals + raw evidence and produces:
+   - `credibility_score` (0-1)
+   - `verdict` (`true|false|misleading|unverified`)
+   - `verdict_reason`
 
-| Score Range | Verdict | Meaning |
-|------------|---------|---------|
-| 75-100 | **Verified True** | Strong evidence supports the claims; corroborated by trusted sources |
-| 50-74 | **Unverified** | Insufficient evidence to confirm or deny; proceed with caution |
-| 30-49 | **Misleading** | Contains factual inaccuracies, missing context, or matches known misinformation patterns |
-| 0-29 | **Likely False** | Contradicted by verified evidence; flagged by external fact-checkers |
+This avoids hardcoded final weighting while still exposing full signal breakdown for auditability.
 
-Every verdict includes a **verdict reason** -- a human-readable sentence explaining *why* that specific verdict was assigned, citing the dominant signals. For example:
+---
 
-> "Rated Misleading because: matches known debunked misinformation (92% similarity); uses highly emotional/propaganda language (85%); source has low credibility rating."
+## Bias & Hallucination Controls (Layer-wise)
+
+### Layer 1 — Input & Detection Guardrails
+- Normalize and bound input length per modality to reduce prompt injection surface.
+- Detect language first, then keep prompts and outputs in detected language to reduce translation drift.
+
+### Layer 2 — Evidence Grounding
+- Retrieve from three Qdrant collections with payload filters and thresholds.
+- Merge cross-lingual and English evidence to reduce mono-language bias.
+- Add live web corroboration (Bright Data) for current events.
+- Pull external fact-check labels and news context before final decision.
+
+### Layer 3 — Decision Controls
+- Pass structured evidence and scores to GPT as explicit context.
+- Require constrained JSON schema for score/verdict output.
+- Fall back to signal-based verdict if final GPT scoring fails.
+
+### Layer 4 — Response Controls
+- Generate explanation/counter-content from the same evidence context used for verdicting.
+- Include verdict reasons and pipeline logs so users can inspect why a decision was made.
+- Return conservative defaults when upstream components fail.
+
+### Layer 5 — Reliability Controls
+- Centralized retry/backoff for transient timeout/network errors.
+- Configurable timeouts for OpenAI, Qdrant, and external HTTP services.
+- Graceful degradation rather than hard failures for optional integrations.
+
+---
+
+## Source Strategy & Citations
+
+SatyaNet intentionally uses multiple source classes to reduce single-source bias:
+
+- **Structured internal retrieval**: `verified_facts`, `misinfo_patterns`, `source_credibility`
+- **External fact checks**: Google Fact Check Tools API publishers
+- **Live web context**: Bright Data SERP retrieval + GPT extraction
+- **News corroboration**: News API
+- **Optional authority references in responses**: government portals, institutional sites, and publisher URLs returned from evidence
+
+For production use, maintain a vetted allowlist/weighting policy for high-trust sources (public health agencies, election commissions, central banks, courts, major wire services).
 
 ---
 
@@ -240,7 +290,25 @@ Full API documentation available at `http://localhost:8000/docs` (Swagger UI).
 
 ## Seed Data
 
-20 verified facts + 14 misinformation patterns + 25 source credibility ratings covering:
+Current local datasets (JSON) are larger than the original prototype and include multilingual entries.
+At the time of writing:
+
+- `seed_facts.json`: 156 entries
+- `misinfo_patterns.json`: 150 entries
+- `source_credibility.json`: 171 entries
+
+### Should we delete data if it feels too large?
+
+Not by default. These files are not large enough to require destructive trimming for runtime health.
+Instead, prefer:
+
+- deduplicate near-identical entries,
+- archive low-quality/outdated records to a separate file,
+- maintain a "high-confidence" active subset for strict production mode.
+
+Data quality matters more than raw count. Blind deletion can increase hallucinations by reducing grounding coverage.
+
+Coverage categories include:
 
 - **Finance**: UPI, cryptocurrency, RBI policies
 - **Health**: COVID-19, vaccines, 5G conspiracy theories
@@ -249,6 +317,32 @@ Full API documentation available at `http://localhost:8000/docs` (Swagger UI).
 - **Science**: ISRO missions
 
 All data in English, Hindi, and Tamil.
+
+---
+
+## Monetization Paths
+
+SatyaNet can generate revenue through multiple product models:
+
+1. **B2B API (usage-based)**  
+   - Charge per verification call and per premium evidence mode (web + multimodal).
+
+2. **Enterprise Compliance Suite (subscription)**  
+   - Dashboard for media houses, election teams, and brands; SLA, audit logs, and governance controls.
+
+3. **Social Platform Moderation Plugin**  
+   - Per-seat + throughput pricing for moderation teams and trust & safety operations.
+
+4. **Browser/WhatsApp Fact-Check Assistant (freemium)**  
+   - Free basic checks, paid "deep verification" with expanded source coverage and report export.
+
+5. **White-label SDK for Newsrooms/EdTech/Civic Apps**  
+   - Annual licensing for branded explainability and counter-content workflows.
+
+6. **Data & Insight Products**  
+   - Trend reports on misinformation narratives by region/language/domain (privacy-safe aggregated analytics).
+
+Recommended go-to-market order: **B2B API -> Enterprise dashboard -> Consumer freemium extension**.
 
 ---
 
