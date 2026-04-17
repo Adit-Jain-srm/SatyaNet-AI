@@ -83,6 +83,14 @@ Uses Qdrant Cloud for RAG, Azure OpenAI GPT-4o, Google Fact Check API, News API,
 - Articles displayed in a dedicated NewsArticles component on the frontend
 - Graceful degradation: empty list on API failure
 
+### Image Analysis (GPT-4o Vision)
+- `image_analyzer.py` uses GPT-4o Vision as primary analysis with heuristic fallback
+- Vision API provides: AI generation detection, manipulation detection, OCR (text extraction), image description, content concerns, context flags
+- Extracted text from images feeds into the claim verification pipeline (Qdrant RAG + Google Fact Check)
+- For a real photo: correctly identifies as authentic with high confidence
+- For AI-generated images: detects synthetic characteristics
+- Heuristic fallback: noise uniformity, symmetry, frequency analysis when Vision API unavailable
+
 ### Audio & Video Analysis
 - `audio_analyzer.py` -- Spectral flatness, temporal consistency, silence ratio heuristics for voice clone detection
 - `video_analyzer.py` -- Block-level noise variance for deepfake frame analysis

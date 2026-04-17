@@ -1,3 +1,5 @@
+"""Qdrant-powered fact retrieval with payload filtering across all 3 collections."""
+
 import logging
 
 from qdrant_client import QdrantClient
@@ -13,7 +15,9 @@ def retrieve_evidence(
     claim: str,
     language: str,
     top_k: int = 5,
+    score_threshold: float = 0.25,
 ) -> list[dict]:
+    """Search verified_facts with language filter and score threshold."""
     try:
         vector = get_embedding(claim)
         results = client.query_points(
@@ -27,6 +31,7 @@ def retrieve_evidence(
             ),
             with_payload=True,
             limit=top_k,
+            score_threshold=score_threshold,
         ).points
     except Exception as e:
         logger.error("Evidence retrieval failed: %s", e)
@@ -41,6 +46,8 @@ def retrieve_evidence(
             "url": payload.get("url", ""),
             "credibility_score": payload.get("credibility_score", 0.5),
             "relevance_score": point.score,
+            "collection": "verified_facts",
+            "category": payload.get("category", ""),
         })
     return evidence
 
@@ -52,11 +59,18 @@ def find_matching_misinfo(
     threshold: float = 0.75,
     top_k: int = 3,
 ) -> list[dict]:
+    """Search misinfo_patterns with language filter."""
     try:
         vector = get_embedding(claim)
         results = client.query_points(
             collection_name="misinfo_patterns",
             query=vector,
+            query_filter=Filter(
+                should=[
+                    FieldCondition(key="language", match=MatchValue(value=language)),
+                    FieldCondition(key="language", match=MatchValue(value="en")),
+                ]
+            ),
             with_payload=True,
             limit=top_k,
         ).points
@@ -74,6 +88,7 @@ def find_matching_misinfo(
                 "verdict": payload.get("verdict", "unverified"),
                 "similarity": point.score,
                 "spread_count": payload.get("spread_count", 0),
+                "collection": "misinfo_patterns",
             })
     return matches
 
@@ -82,7 +97,8 @@ def get_source_credibility(
     client: QdrantClient,
     source_text: str,
     top_k: int = 3,
-) -> float:
+) -> tuple[float, list[dict]]:
+    """Search source_credibility and return (weighted_score, matched_sources)."""
     try:
         vector = get_embedding(source_text)
         results = client.query_points(
@@ -90,21 +106,31 @@ def get_source_credibility(
             query=vector,
             with_payload=True,
             limit=top_k,
+            score_threshold=0.3,
         ).points
     except Exception as e:
         logger.error("Source credibility lookup failed: %s", e)
-        return 0.5
+        return 0.5, []
 
     if not results:
-        return 0.5
+        return 0.5, []
 
     total_score = 0.0
     total_weight = 0.0
+    matched_sources = []
     for point in results:
         payload = point.payload or {}
         trust = payload.get("trust_score", 0.5)
         weight = point.score
         total_score += trust * weight
         total_weight += weight
+        matched_sources.append({
+            "domain": payload.get("domain", ""),
+            "trust_score": trust,
+            "similarity": point.score,
+            "category": payload.get("category", ""),
+            "collection": "source_credibility",
+        })
 
-    return total_score / total_weight if total_weight > 0 else 0.5
+    score = total_score / total_weight if total_weight > 0 else 0.5
+    return score, matched_sources

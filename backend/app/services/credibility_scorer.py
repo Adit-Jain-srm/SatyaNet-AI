@@ -62,19 +62,55 @@ def compute_credibility(
 def score_to_verdict(score: float) -> str:
     if score >= 0.75:
         return "true"
-    if score >= 0.5:
+    if score >= 0.50:
         return "unverified"
-    if score >= 0.25:
+    if score >= 0.30:
         return "misleading"
     return "false"
 
 
-def google_reviews_to_score(reviews: list[dict]) -> float:
-    """Convert Google Fact Check reviews into a 0-1 credibility score.
+def build_verdict_reason(
+    score: float,
+    verdict: str,
+    breakdown: CredibilityBreakdown,
+    misinfo_count: int,
+    external_count: int,
+    evidence_count: int,
+) -> str:
+    """Build a human-readable reason for the verdict based on the dominant signals."""
+    reasons: list[str] = []
 
-    0.0 = all reviews say false, 1.0 = all reviews say true, 0.5 = no data.
-    Uses word-boundary regex to avoid substring false-matches.
-    """
+    if breakdown.misinfo_pattern_score > 0.7:
+        reasons.append(f"matches known debunked misinformation ({breakdown.misinfo_pattern_score:.0%} similarity)")
+    if breakdown.google_factcheck_score < 0.3 and external_count > 0:
+        reasons.append(f"rated false by {external_count} external fact-checker(s)")
+    if breakdown.emotional_language_score > 0.7:
+        reasons.append(f"uses highly emotional/propaganda language ({breakdown.emotional_language_score:.0%})")
+    if breakdown.ai_generation_score > 0.6:
+        reasons.append(f"likely AI-generated content ({breakdown.ai_generation_score:.0%} probability)")
+    if breakdown.fact_evidence_score > 0.7 and evidence_count > 0:
+        reasons.append(f"supported by {evidence_count} verified source(s)")
+    if breakdown.source_credibility_score > 0.8:
+        reasons.append("comes from a highly trusted source")
+    if breakdown.source_credibility_score < 0.3:
+        reasons.append("source has low credibility rating")
+    if breakdown.fact_evidence_score < 0.2 and evidence_count == 0:
+        reasons.append("no matching verified evidence found in database")
+
+    if not reasons:
+        reasons.append(f"overall credibility score of {score:.0%} across 6 weighted signals")
+
+    verdict_labels = {
+        "true": "Verified True",
+        "false": "Likely False",
+        "misleading": "Misleading",
+        "unverified": "Unverified",
+    }
+    label = verdict_labels.get(verdict, verdict)
+    return f"Rated {label} because: {'; '.join(reasons[:3])}."
+
+
+def google_reviews_to_score(reviews: list[dict]) -> float:
     if not reviews:
         return 0.5
 

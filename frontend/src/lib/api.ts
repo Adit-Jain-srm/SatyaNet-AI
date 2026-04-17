@@ -41,6 +41,15 @@ export interface ImageAnalysisResult {
   is_manipulated: boolean;
   manipulation_probability: number;
   similar_verified_images: string[];
+  description: string;
+  ai_reasoning: string;
+  manipulation_reasoning: string;
+  extracted_text: string;
+  text_claims: string[];
+  content_concerns: string[];
+  is_real_photo: boolean;
+  context_flags: string[];
+  analysis_method: string;
 }
 
 export interface AudioAnalysisResult {
@@ -69,10 +78,18 @@ export interface NewsArticle {
   published_at: string;
 }
 
+export interface QdrantStats {
+  collection: string;
+  hits: number;
+  top_score: number;
+}
+
 export interface AnalysisResponse {
   credibility_score: number;
   verdict: "true" | "false" | "misleading" | "unverified";
+  verdict_reason: string;
   detected_language: string;
+  detection_method: string;
   claims: ClaimResult[];
   breakdown: CredibilityBreakdown;
   explanation: string;
@@ -83,6 +100,8 @@ export interface AnalysisResponse {
   video_analysis: VideoAnalysisResult | null;
   external_factchecks: ExternalFactCheck[];
   news_articles: NewsArticle[];
+  processing_log: string[];
+  qdrant_stats: QdrantStats[];
 }
 
 export interface AnalysisRequest {

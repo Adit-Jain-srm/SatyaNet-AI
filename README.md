@@ -2,104 +2,176 @@
 
 **AI-Powered Misinformation Detection & Counter-Response System**
 
-SatyaNet ("Satya" = Truth in Sanskrit) is a multi-modal, multilingual system that detects, explains, and counters misinformation in real time. It goes beyond passive detection to actively build trust — telling users *why* something is likely false and providing *verified alternative information*.
+SatyaNet ("Satya" = Truth in Sanskrit) is a multi-modal, multilingual misinformation detection and counter-response system. It goes beyond passive detection to actively build trust -- telling users *why* something is misleading, providing *verified alternative information*, and explaining the reasoning behind every verdict.
 
-Built by Team Arize.
+Built by **Team Arize**.
 
 ---
 
 ## Key Features
 
-- **Three-Layer Pipeline** — Detection → Understanding → Response (not just "fake or real")
-- **Multilingual** — English, Hindi (हिन्दी), Tamil (தமிழ்) with automatic language detection
-- **Multi-Modal** — Text analysis and image deepfake/AI-generation detection
-- **RAG Fact-Checking** — Retrieval-Augmented Generation powered by Qdrant vector search against verified facts
-- **Credibility Scoring** — Weighted multi-signal score (0-100) with transparent breakdown
-- **Explainability** — "Why this might be fake" structured explanations in the user's language
-- **Counter-Content Generation** — Verified alternative information with citations, shareable summaries
-- **WhatsApp-Ready** — Copy-paste shareable fact-check cards
+- **Three-Layer Pipeline** -- Detection, Understanding, Response (not just a binary true/false label)
+- **Multi-Modal** -- Text, image (GPT-4o Vision), audio, video, and URL analysis
+- **Multilingual** -- English, Hindi, Tamil with automatic language detection (Azure Translator + langdetect fallback)
+- **RAG Fact-Checking** -- Retrieval-Augmented Generation via Qdrant vector search across 3 collections with payload filtering
+- **External Fact-Check Aggregation** -- Google Fact Check Tools API + News API for live evidence
+- **Reasoned Verdicts** -- Every verdict includes a human-readable reason citing specific evidence and signals
+- **Explainability** -- Structured "Why This Rating" explanations with chain-of-thought LLM reasoning
+- **Counter-Content** -- Verified alternative information with source citations, WhatsApp-shareable summaries
+- **Transparency** -- Full pipeline trace showing every step of the analysis process
 
 ---
 
 ## Architecture
 
 ```
-User Input (Text / Image)
-       │
-       ▼
-┌──────────────────────┐
-│   Language Detection  │  (langdetect)
-└──────────┬───────────┘
-           ▼
-┌──────────────────────┐
-│  Pipeline Orchestrator│
-└──┬───────────┬───────┘
-   │           │
-   ▼           ▼
-Text Pipeline  Image Pipeline
-   │           │
-   ▼           ▼
-Claim Extraction (GPT-4o)    Deepfake Detection
-   │
-   ▼
-┌──────────────────────────────────────┐
-│  Qdrant RAG Fact Retrieval           │
-│  ┌──────────────┐ ┌───────────────┐  │
-│  │verified_facts│ │misinfo_patterns│  │
-│  └──────────────┘ └───────────────┘  │
-│  ┌──────────────────┐                │
-│  │source_credibility│                │
-│  └──────────────────┘                │
-└──────────────┬───────────────────────┘
-               ▼
-     Credibility Scoring
-               │
-               ▼
-   Explanation + Counter-Content (GPT-4o)
-               │
-               ▼
-        Dashboard / API
+User Input (Text / Image / Audio / Video / URL)
+       |
+       v
++---------------------------+
+| Input Handler             |
+| - URL: fetch article text |
+| - Image: GPT-4o Vision   |
+| - Audio/Video: heuristics |
++------------+--------------+
+             |
+             v
++---------------------------+
+| Language Detection        |
+| Azure Translator -> lang  |
+| detect fallback           |
++------------+--------------+
+             |
+             v
++---------------------------+
+| Claim Extraction (GPT-4o) |
+| Chain-of-thought prompting |
+| + Propaganda Analysis      |
++------------+--------------+
+             |
+             v
++----------------------------------------------+
+| Multi-Source Evidence Retrieval               |
+|                                              |
+| Qdrant Cloud (3 collections):               |
+|   verified_facts    [language-filtered]      |
+|   misinfo_patterns  [language-filtered]      |
+|   source_credibility [score-thresholded]     |
+|                                              |
+| + Cross-lingual search (translate -> EN)     |
+| + Google Fact Check Tools API                |
+| + News API (live articles)                   |
++---------------------+------------------------+
+                      |
+                      v
++---------------------------+
+| 6-Signal Credibility      |
+| Scoring Engine            |
+| + Verdict Reasoning       |
++------------+--------------+
+             |
+             v
++---------------------------+
+| Response Generation       |
+| (GPT-4o)                  |
+| - Structured explanation  |
+| - Counter-content         |
+| - WhatsApp summary        |
+| - Verdict reason          |
++---------------------------+
 ```
 
 ## Tech Stack
 
-| Layer        | Technology                                            |
-| ------------ | ----------------------------------------------------- |
-| Backend      | Python 3.11, FastAPI                                  |
-| Frontend     | Next.js 14, Tailwind CSS, TypeScript                  |
-| Vector DB    | **Qdrant** (3 collections, payload indexing, filtered semantic search) |
-| Embeddings   | `paraphrase-multilingual-MiniLM-L12-v2` via FastEmbed |
-| LLM          | Azure OpenAI GPT-4o                                   |
-| Containers   | Docker Compose                                        |
+| Layer | Technology |
+|-------|-----------|
+| Backend | Python 3.11, FastAPI |
+| Frontend | Next.js 14, Tailwind CSS, Framer Motion, TypeScript |
+| Vector DB | **Qdrant Cloud** (3 collections, payload indexing, filtered semantic search, score thresholds) |
+| Embeddings | `paraphrase-multilingual-MiniLM-L12-v2` via FastEmbed (384 dims, cosine) |
+| LLM | Azure OpenAI GPT-4o (text + vision) |
+| Fact-Checking | Google Fact Check Tools API |
+| News | News API (live article retrieval) |
+| Translation | Azure Translator (detection + cross-lingual search) |
 
 ---
 
-## Qdrant Integration (Deep)
+## Qdrant Integration
 
-Qdrant serves as the **central knowledge backbone** with three purpose-built collections:
+Qdrant serves as the **central knowledge backbone** with three purpose-built collections, all using payload-indexed filtered vector search:
 
 ### Collections
 
-1. **`verified_facts`** — Verified news, government announcements, WHO data
-   - Payload: `text, source, url, language, category, credibility_score`
-   - Indexed on: `language`, `category`, `source`
-
-2. **`misinfo_patterns`** — Known debunked misinformation
-   - Payload: `original_claim, debunk_summary, verdict, language, spread_count`
-   - Indexed on: `language`, `verdict`
-
-3. **`source_credibility`** — Domain/source trust ratings
-   - Payload: `domain, trust_score, category`
-   - Indexed on: `category`
+| Collection | Purpose | Payload Indexes | Query Features |
+|-----------|---------|----------------|---------------|
+| `verified_facts` | Verified news, government data, WHO facts | `language`, `category`, `source` | Language-filtered search (user lang OR English), score threshold 0.25 |
+| `misinfo_patterns` | Known debunked misinformation | `language`, `verdict` | Language-filtered search, client-side similarity threshold 0.65 |
+| `source_credibility` | Domain/source trust ratings | `category` | Score threshold 0.3, similarity-weighted trust averaging |
 
 ### Features Used
 
-- Cosine similarity search for semantic claim matching
-- Payload filtering (search within language, category)
-- Payload indexing for fast filtered queries
-- Batch upsert for data ingestion
-- Score thresholding to separate high-confidence matches from noise
-- Multi-collection querying for comprehensive credibility scoring
+- Cosine similarity search with `paraphrase-multilingual-MiniLM-L12-v2` embeddings
+- Payload filtering (`language`, `category`) on every query
+- Payload indexing (KEYWORD type) for fast filtered search
+- Server-side `score_threshold` to eliminate low-quality matches
+- Batch upsert for bulk data ingestion
+- Multi-collection querying (3 parallel searches per claim)
+- Cross-lingual search: non-English claims are translated to English and searched again, results merged and deduplicated
+
+---
+
+## Credibility Scoring
+
+The credibility score (0-100) is computed from 6 weighted signals:
+
+| Signal | Weight | Source | Direction |
+|--------|--------|--------|-----------|
+| AI Generation | 10% | Image/audio analyzers | Lower is better (inverted) |
+| Fact Evidence | 25% | Qdrant `verified_facts` | Higher is better |
+| Source Credibility | 15% | Qdrant `source_credibility` | Higher is better |
+| Misinfo Pattern | 15% | Qdrant `misinfo_patterns` | Lower is better (inverted) |
+| Emotional Language | 10% | GPT-4o propaganda analysis | Lower is better (inverted) |
+| Google Fact Check | 25% | Google Fact Check Tools API | Higher is better |
+
+### Verdict Scale
+
+| Score Range | Verdict | Meaning |
+|------------|---------|---------|
+| 75-100 | **Verified True** | Strong evidence supports the claims; corroborated by trusted sources |
+| 50-74 | **Unverified** | Insufficient evidence to confirm or deny; proceed with caution |
+| 30-49 | **Misleading** | Contains factual inaccuracies, missing context, or matches known misinformation patterns |
+| 0-29 | **Likely False** | Contradicted by verified evidence; flagged by external fact-checkers |
+
+Every verdict includes a **verdict reason** -- a human-readable sentence explaining *why* that specific verdict was assigned, citing the dominant signals. For example:
+
+> "Rated Misleading because: matches known debunked misinformation (92% similarity); uses highly emotional/propaganda language (85%); source has low credibility rating."
+
+---
+
+## Prompting Strategy
+
+SatyaNet uses advanced prompting techniques across all LLM calls:
+
+### Claim Extraction
+- **Chain-of-thought**: Forces step-by-step reasoning (identify language, determine domain, separate facts from opinions)
+- **Structured output**: Returns language, domain, claims array, and skipped_reasons
+- **Implicit claim extraction**: Catches claims that are implied but not stated directly
+
+### Propaganda Analysis
+- **Expert persona**: Trained on Institute for Propaganda Analysis taxonomy
+- **Structured evidence**: Each detected technique includes quoted evidence and severity rating
+- **Multi-dimensional scoring**: Emotional score + sensationalism score + technique-level breakdown
+
+### Explanation Generation
+- **Three-layer context**: System prompt establishes the Response Layer role in the pipeline
+- **Evidence grounding**: All Qdrant collection hits, Google reviews, and similarity scores are passed as structured context
+- **Step-by-step reasoning**: Prompt asks the LLM to ASSESS, find EVIDENCE, match PATTERNS, identify missing CONTEXT, then generate the verdict reason
+- **Multi-output**: Single prompt generates explanation, counter-content, shareable summary, and verdict reason
+
+### Image Analysis (GPT-4o Vision)
+- **Forensics expert persona**: Analyzes for AI generation, manipulation, OCR, content concerns, and context flags
+- **Structured JSON output**: 12 fields covering every aspect of image authenticity
+- **Heuristic fallback**: Pixel-level analysis (noise uniformity, symmetry, frequency) when Vision API is unavailable
 
 ---
 
@@ -107,95 +179,68 @@ Qdrant serves as the **central knowledge backbone** with three purpose-built col
 
 ### Prerequisites
 
-- Docker & Docker Compose
+- Python 3.11+ with venv
+- Node.js 18+
 - Azure OpenAI API key (GPT-4o deployment)
+- Qdrant Cloud account (or local Docker)
 
-### 1. Clone & Configure
+### 1. Clone and Configure
 
 ```bash
 git clone https://github.com/Adit-Jain-srm/SatyaNet-AI.git
 cd SatyaNet-AI
 cp .env.example .env
-# Edit .env with your Azure OpenAI credentials
+# Edit .env with your credentials
 ```
 
-### 2. Start Services
+### 2. Backend
 
 ```bash
-docker compose up --build
-```
+python -m venv .venv
+.venv/Scripts/pip install -r backend/requirements.txt  # Windows
+# or: .venv/bin/pip install -r backend/requirements.txt  # Mac/Linux
 
-This starts:
-- **Qdrant** on `http://localhost:6333` (dashboard at `/dashboard`)
-- **Backend API** on `http://localhost:8000` (docs at `/docs`)
-- **Frontend** on `http://localhost:3000`
-
-### 3. Seed the Database
-
-```bash
-curl -X POST http://localhost:8000/ingest/seed
-```
-
-This loads verified facts, misinformation patterns, and source credibility data into Qdrant.
-
-### 4. Analyze Content
-
-Open `http://localhost:3000` and paste text or upload an image. Try the built-in examples in English, Hindi, and Tamil.
-
----
-
-## API Reference
-
-### `POST /analyze`
-
-Analyze content for misinformation.
-
-```json
-{
-  "content": "Government has banned all UPI transactions!",
-  "content_type": "text",
-  "language": null
-}
-```
-
-Response includes: `credibility_score`, `verdict`, `claims[]`, `breakdown`, `explanation`, `counter_content`, `shareable_summary`.
-
-### `POST /ingest`
-
-Bulk ingest verified facts, misinfo patterns, and source ratings.
-
-### `POST /ingest/seed`
-
-Load seed data from `data/*.json` files.
-
-### `GET /health`
-
-Health check with Qdrant connectivity status.
-
----
-
-## Local Development (Without Docker)
-
-```bash
-# Terminal 1: Qdrant
-docker run -p 6333:6333 -p 6334:6334 qdrant/qdrant
-
-# Terminal 2: Backend
 cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
+../.venv/Scripts/uvicorn app.main:app --reload --port 8000
+```
 
-# Terminal 3: Frontend
+### 3. Frontend
+
+```bash
 cd frontend
 npm install
 npm run dev
 ```
 
+### 4. Seed Database
+
+```bash
+curl -X POST http://localhost:8000/ingest/seed
+```
+
+### 5. Analyze
+
+Open `http://localhost:3000` and try the built-in examples in English, Hindi, and Tamil.
+
+---
+
+## API Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| `POST` | `/analyze` | Analyze text/URL content for misinformation |
+| `POST` | `/analyze/upload` | Upload image/audio/video files for analysis |
+| `POST` | `/ingest` | Bulk ingest facts, misinfo patterns, sources |
+| `POST` | `/ingest/seed` | Load seed data from `data/*.json` |
+| `GET` | `/health` | Health check with Qdrant connectivity |
+
+Full API documentation available at `http://localhost:8000/docs` (Swagger UI).
+
 ---
 
 ## Seed Data
 
-Pre-loaded with India-centric verified facts and misinformation patterns covering:
+20 verified facts + 14 misinformation patterns + 25 source credibility ratings covering:
 
 - **Finance**: UPI, cryptocurrency, RBI policies
 - **Health**: COVID-19, vaccines, 5G conspiracy theories
@@ -203,98 +248,19 @@ Pre-loaded with India-centric verified facts and misinformation patterns coverin
 - **Scams**: WhatsApp free laptop/phone scams
 - **Science**: ISRO missions
 
-All data available in English, Hindi, and Tamil.
-
-Source credibility ratings for 25+ domains including government (.gov.in), fact-checkers (AltNews, BoomLive), major news outlets, and social media platforms.
-
----
-
-## How the Credibility Score Works
-
-The credibility score (0.0 - 1.0) is a weighted combination of five signals:
-
-| Signal                  | Weight | Description                                    |
-| ----------------------- | ------ | ---------------------------------------------- |
-| AI Generation           | 15%    | Probability content is AI-generated (inverted)  |
-| Fact Evidence           | 30%    | How well claims match verified evidence (Qdrant)|
-| Source Credibility      | 20%    | Trust rating of the source domain (Qdrant)      |
-| Misinfo Pattern Match   | 20%    | Similarity to known misinformation (inverted)   |
-| Emotional Language      | 15%    | Propaganda/sensationalism level (inverted)      |
-
-Scores above 0.75 = **Verified True**, 0.50-0.75 = **Unverified**, 0.25-0.50 = **Misleading**, below 0.25 = **Likely False**.
-
----
-
-## Project Structure
-
-```
-SatyaNet-AI/
-├── backend/
-│   ├── app/
-│   │   ├── main.py                 # FastAPI application
-│   │   ├── config.py               # Environment settings
-│   │   ├── routers/
-│   │   │   ├── analyze.py          # POST /analyze
-│   │   │   ├── health.py           # GET /health
-│   │   │   └── ingest.py           # POST /ingest, /ingest/seed
-│   │   ├── services/
-│   │   │   ├── orchestrator.py     # Pipeline orchestrator
-│   │   │   ├── language_detector.py
-│   │   │   ├── claim_extractor.py  # GPT-4o claim extraction
-│   │   │   ├── fact_retriever.py   # Qdrant RAG engine
-│   │   │   ├── credibility_scorer.py
-│   │   │   ├── explanation_engine.py
-│   │   │   ├── image_analyzer.py
-│   │   │   └── embedder.py         # FastEmbed multilingual
-│   │   ├── models/
-│   │   │   └── schemas.py          # Pydantic models
-│   │   └── qdrant/
-│   │       ├── client.py           # Qdrant client singleton
-│   │       ├── collections.py      # Collection + index setup
-│   │       └── ingest.py           # Data ingestion
-│   ├── requirements.txt
-│   └── Dockerfile
-├── frontend/
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── layout.tsx
-│   │   │   ├── page.tsx            # Main dashboard
-│   │   │   └── globals.css
-│   │   ├── components/
-│   │   │   ├── AnalysisForm.tsx
-│   │   │   ├── CredibilityGauge.tsx
-│   │   │   ├── ExplanationCard.tsx
-│   │   │   ├── CounterContent.tsx
-│   │   │   ├── BreakdownChart.tsx
-│   │   │   ├── ClaimCard.tsx
-│   │   │   ├── VerdictBadge.tsx
-│   │   │   ├── LanguageBadge.tsx
-│   │   │   └── ImageAnalysis.tsx
-│   │   └── lib/
-│   │       ├── api.ts
-│   │       └── utils.ts
-│   ├── package.json
-│   └── Dockerfile
-├── data/
-│   ├── seed_facts.json
-│   ├── misinfo_patterns.json
-│   └── source_credibility.json
-├── docker-compose.yml
-├── .env.example
-└── README.md
-```
+All data in English, Hindi, and Tamil.
 
 ---
 
 ## Evaluation Criteria Mapping
 
-| Criterion        | Implementation                                                   |
-| ---------------- | ---------------------------------------------------------------- |
-| AI Depth         | RAG + LLM reasoning, multi-signal credibility scoring, image analysis, multilingual embeddings |
-| Originality      | Three-layer architecture (detect → explain → counter), credibility breakdown transparency, shareable cards |
-| Usability        | Modern dashboard, one-click examples, copy-paste shareable summaries, automatic language detection |
-| Scalability      | Docker Compose, async FastAPI, Qdrant vector indexing with payload filters, stateless services |
-| Documentation    | Comprehensive README, API docs (FastAPI /docs), architecture diagrams, seed data documentation |
+| Criterion | Implementation |
+|-----------|---------------|
+| **AI Depth** | GPT-4o Vision for images, chain-of-thought claim extraction, 6-signal credibility engine, RAG with Qdrant, cross-lingual evidence retrieval, propaganda analysis with technique taxonomy |
+| **Originality** | Three-layer architecture (detect/understand/respond), verdict reasoning (not just labels), pipeline trace transparency, multi-source evidence fusion (Qdrant + Google FC + News API) |
+| **Usability** | 5-modality input (text/image/audio/video/URL), one-click examples in 3 languages, WhatsApp deep-link sharing, loading skeletons, real-time Qdrant health indicator |
+| **Scalability** | Qdrant Cloud vector search, async FastAPI, stateless services, Docker Compose, payload-indexed filtered queries |
+| **Documentation** | Comprehensive README, API docs (FastAPI /docs), AGENTS.md, lessons.md, pipeline trace in every response |
 
 ---
 

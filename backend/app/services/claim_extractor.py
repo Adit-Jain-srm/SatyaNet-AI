@@ -22,31 +22,91 @@ def _get_client() -> AzureOpenAI:
     return _client
 
 
-CLAIM_EXTRACTION_PROMPT = """You are a fact-checking analyst. Extract all verifiable factual claims from the following content.
+CLAIM_SYSTEM = """You are an expert fact-checking analyst trained in identifying verifiable factual claims across multiple languages including English, Hindi, and Tamil.
+
+Your task has two parts:
+1. CLAIM EXTRACTION — identify every verifiable factual assertion
+2. PROPAGANDA SCAN — flag rhetorical manipulation techniques
+
+You must think step-by-step:
+- First, identify the language and topic domain
+- Then, separate factual assertions from opinions, questions, and emotional appeals
+- For each factual assertion, rewrite it as a standalone verifiable claim
+- Finally, note any propaganda techniques used"""
+
+CLAIM_EXTRACTION_PROMPT = """Analyze the following content and extract all verifiable factual claims.
+
+<content>
+{content}
+</content>
+
+Think step-by-step:
+1. What language is this content in?
+2. What is the topic domain (health, politics, finance, technology, etc.)?
+3. Which statements are factual assertions (can be verified as true or false)?
+4. Which statements are opinions, questions, or emotional appeals (skip these)?
 
 Rules:
-- Each claim should be a single, self-contained factual statement
-- Ignore opinions, questions, and subjective statements
-- Keep claims in the ORIGINAL language of the content
-- If no verifiable claims exist, return an empty claims array
+- Each claim must be a single, self-contained, verifiable factual statement
+- Preserve the ORIGINAL language — do not translate claims
+- Include implicit claims (e.g. "5G causes COVID" implies "5G radiation is harmful to health")
+- Exclude questions, opinions, commands ("Share this now!"), and emotional appeals
+- If the content contains no verifiable claims, return an empty array
 
-Content:
-{content}
-
-Return a JSON object: {{"claims": ["claim 1", "claim 2", ...]}}"""
-
-
-PROPAGANDA_ANALYSIS_PROMPT = """Analyze the following content for propaganda techniques, emotional manipulation, and misleading language patterns.
-
-Content (Language: {language}):
-{content}
-
-Return a JSON object with:
+Return JSON:
 {{
-  "emotional_score": <float 0-1, how emotionally charged>,
-  "propaganda_techniques": [<list of detected techniques>],
-  "misleading_patterns": [<specific misleading phrases or patterns found>],
-  "sensationalism_score": <float 0-1>
+  "language": "<detected language code>",
+  "domain": "<topic domain>",
+  "claims": ["claim 1", "claim 2", ...],
+  "skipped_reasons": ["<why certain statements were excluded>"]
+}}"""
+
+
+PROPAGANDA_SYSTEM = """You are a media literacy expert trained in the detection of propaganda techniques as defined by the Institute for Propaganda Analysis and modern computational propaganda research.
+
+You analyze content across languages (English, Hindi, Tamil) for:
+- Emotional manipulation (fear, urgency, outrage)
+- Logical fallacies (ad hominem, straw man, false dichotomy)
+- Rhetorical tricks (loaded language, bandwagon, appeal to authority)
+- Structural deception (misleading headlines, cherry-picked data, missing context)"""
+
+PROPAGANDA_ANALYSIS_PROMPT = """Analyze the following content for propaganda techniques and emotional manipulation.
+
+<content language="{language}">
+{content}
+</content>
+
+Perform a structured analysis:
+
+1. EMOTIONAL TONE: Rate 0-1 how emotionally charged the content is. Consider:
+   - Use of exclamation marks, ALL CAPS, urgent language
+   - Fear-inducing or outrage-inducing framing
+   - Personal attacks or appeals to identity
+
+2. PROPAGANDA TECHNIQUES: Identify specific techniques used:
+   - Name-calling / loaded language
+   - Bandwagon / social proof manipulation
+   - Fear appeal / appeal to urgency
+   - False authority / appeal to unverified experts
+   - Cherry-picking / selective presentation
+   - Whataboutism / deflection
+   - Repetition / slogan-based messaging
+
+3. MISLEADING PATTERNS: Quote specific phrases that are misleading and explain why.
+
+4. SENSATIONALISM: Rate 0-1 whether the framing exaggerates reality.
+
+Return JSON:
+{{
+  "emotional_score": <float 0-1>,
+  "sensationalism_score": <float 0-1>,
+  "propaganda_techniques": [
+    {{"technique": "<name>", "evidence": "<quoted text>", "severity": "<low|medium|high>"}}
+  ],
+  "misleading_patterns": [
+    {{"pattern": "<quoted phrase>", "reason": "<why it is misleading>"}}
+  ],
+  "manipulation_summary": "<1-2 sentence summary of manipulation tactics used>"
 }}"""
 
 
@@ -56,23 +116,23 @@ def extract_claims(content: str) -> list[str]:
         response = client.chat.completions.create(
             model=settings.azure_openai_deployment,
             messages=[
-                {"role": "system", "content": "You extract factual claims from content. Always respond with valid JSON."},
-                {"role": "user", "content": CLAIM_EXTRACTION_PROMPT.format(content=content)},
+                {"role": "system", "content": CLAIM_SYSTEM},
+                {"role": "user", "content": CLAIM_EXTRACTION_PROMPT.format(content=content[:3000])},
             ],
             temperature=0.1,
-            max_tokens=1000,
+            max_tokens=1200,
             response_format={"type": "json_object"},
         )
-        raw = response.choices[0].message.content or "[]"
+        raw = response.choices[0].message.content or "{}"
         parsed = json.loads(raw)
-        if isinstance(parsed, list):
-            return parsed
         if isinstance(parsed, dict) and "claims" in parsed:
             return parsed["claims"]
+        if isinstance(parsed, list):
+            return parsed
         return []
     except Exception as e:
         logger.error("Claim extraction failed: %s", e)
-        return [content]
+        return [content[:500]]
 
 
 def analyze_propaganda(content: str, language: str) -> dict:
@@ -82,11 +142,11 @@ def analyze_propaganda(content: str, language: str) -> dict:
         response = client.chat.completions.create(
             model=settings.azure_openai_deployment,
             messages=[
-                {"role": "system", "content": "You are a media literacy expert. Always respond with valid JSON."},
-                {"role": "user", "content": PROPAGANDA_ANALYSIS_PROMPT.format(content=content, language=lang_name)},
+                {"role": "system", "content": PROPAGANDA_SYSTEM},
+                {"role": "user", "content": PROPAGANDA_ANALYSIS_PROMPT.format(content=content[:3000], language=lang_name)},
             ],
             temperature=0.2,
-            max_tokens=800,
+            max_tokens=1000,
             response_format={"type": "json_object"},
         )
         raw = response.choices[0].message.content or "{}"
@@ -98,4 +158,5 @@ def analyze_propaganda(content: str, language: str) -> dict:
             "propaganda_techniques": [],
             "misleading_patterns": [],
             "sensationalism_score": 0.5,
+            "manipulation_summary": "",
         }

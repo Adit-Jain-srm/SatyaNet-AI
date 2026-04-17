@@ -14,6 +14,8 @@ import LanguageBadge from "@/components/LanguageBadge";
 import NewsArticles from "@/components/NewsArticles";
 import VerdictBadge from "@/components/VerdictBadge";
 import VideoAnalysis from "@/components/VideoAnalysis";
+import PipelineLog from "@/components/PipelineLog";
+import QdrantInsight from "@/components/QdrantInsight";
 import {
   analyzeContent,
   analyzeFile,
@@ -155,6 +157,26 @@ export default function Home() {
         <AnalysisForm onSubmit={handleAnalyze} onFileSubmit={handleFileSubmit} isLoading={isLoading} />
       </motion.section>
 
+      {/* Loading Skeleton */}
+      {isLoading && (
+        <div className="mx-auto max-w-3xl space-y-6 animate-pulse">
+          <div className="card flex items-center justify-between">
+            <div className="skeleton h-[180px] w-[180px] rounded-full" />
+            <div className="space-y-3">
+              <div className="skeleton h-8 w-32 rounded-full" />
+              <div className="skeleton h-6 w-20 rounded-full" />
+            </div>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
+            <div className="skeleton h-64 rounded-2xl" />
+            <div className="space-y-4">
+              <div className="skeleton h-40 rounded-2xl" />
+              <div className="skeleton h-32 rounded-2xl" />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Error */}
       <AnimatePresence>
         {error && (
@@ -208,6 +230,16 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+              {result.verdict_reason && (
+                <motion.p
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                  className="mt-4 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3 text-[13px] leading-relaxed text-gray-400"
+                >
+                  {result.verdict_reason}
+                </motion.p>
+              )}
             </motion.div>
 
             {/* Two-column layout */}
@@ -234,6 +266,10 @@ export default function Home() {
                 {result.video_analysis && (
                   <VideoAnalysis result={result.video_analysis} />
                 )}
+
+                {result.qdrant_stats?.length > 0 && (
+                  <QdrantInsight stats={result.qdrant_stats} />
+                )}
               </div>
 
               {/* Main content */}
@@ -258,6 +294,13 @@ export default function Home() {
                       <ClaimCard key={i} claim={claim} index={i} />
                     ))}
                   </div>
+                )}
+
+                {result.processing_log?.length > 0 && (
+                  <PipelineLog
+                    log={result.processing_log}
+                    detectionMethod={result.detection_method}
+                  />
                 )}
               </div>
             </div>
