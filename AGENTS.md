@@ -72,7 +72,7 @@ Uses Qdrant Cloud for RAG, Azure OpenAI GPT-4o, Google Fact Check API, News API,
 
 ### Google Fact Check Tools API
 - Integrated as `google_factcheck.py` service -- searches external fact-checkers globally
-- Contributes 25% weight to credibility score via `google_factcheck_score`
+- Contributes 35% weight to credibility score via `google_factcheck_score` (strongest weighted signal)
 - Returns structured `ExternalFactCheck` objects with publisher, rating, URL
 - If Google says "False", it can override the score-based verdict
 - Graceful degradation: empty list returned on API failure
