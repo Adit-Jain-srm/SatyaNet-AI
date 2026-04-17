@@ -96,5 +96,957 @@
     "verdict": "false",
     "language": "ta",
     "spread_count": 35000
+  },
+  {
+    "original_claim": "UNESCO has declared the Indian National Anthem 'Jana Gana Mana' as the best in the world.",
+    "debunk_summary": "UNESCO has officially clarified that they have made no such statement or given any such award to any national anthem. This is a long-running hoax.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 3100000
+  },
+  {
+    "original_claim": "The newly inaugurated Ram Mandir uses AI-controlled laser technology to ensure the sun always hits the idol's forehead at exact noon every single day.",
+    "debunk_summary": "While Surya Tilak is an engineering feature using lenses and mirrors designed by the CBRI, it does not use AI or lasers, and specifically happens on Ram Navami, not every day.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 560000
+  },
+  {
+    "original_claim": "Climate change is a natural cycle, and global warming has actually stopped since 1998.",
+    "debunk_summary": "Multiple scientific bodies, including NASA and the IPCC, verify that human activities are the primary driver of current climate change. The planet has continued to warm significantly since 1998.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 1200000
+  },
+  {
+    "original_claim": "യുനെസ്കോ ഇന്ത്യൻ ദേശീയഗാനത്തെ ലോകത്തിലെ ഏറ്റവും മികച്ചതായി പ്രഖ്യാപിച്ചു",
+    "debunk_summary": "ഇതൊരു വ്യാജവാർത്തയാണ്. യുനെസ്കോ അത്തരമൊരു പ്രഖ്യാപനം നടത്തിയിട്ടില്ലെന്ന് അവർ തന്നെ വ്യക്തമാക്കിയിട്ടുണ്ട്.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 450000
+  },
+  {
+    "original_claim": "AI deepfakes are completely indistinguishable from real videos and even experts cannot tell the difference.",
+    "debunk_summary": "While deepfakes are advancing, forensic experts use detection algorithms analyzing lighting, audio-video sync, and biological signals (like blinking) to reliably detect AI generated or manipulated videos.",
+    "verdict": "misleading",
+    "language": "en",
+    "spread_count": 430000
+  },
+  {
+    "original_claim": "ഇന്ത്യൻ കറൻസി നോട്ടുകളിൽ ഗാന്ധിജിയുടെ ചിത്രത്തിന് പകരം മറ്റ് നേതാക്കളുടെ ചിത്രം വരുന്നു",
+    "debunk_summary": "റിസർവ് ബാങ്ക് ഓഫ് ഇന്ത്യ (ആർബിഐ) ഇത് നിഷേധിച്ചിട്ടുണ്ട്. കറൻസി നോട്ടുകളിൽ മാറ്റം വരുത്താൻ യാതൊരു പദ്ധതിയും ഇപ്പോൾ ഇല്ല.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 320000
+  },
+  {
+    "original_claim": "RBI 500 रुपये के नोट पर से महात्मा गांधी की तस्वीर हटाकर रवींद्रनाथ टैगोर की तस्वीर लगाने जा रहा है",
+    "debunk_summary": "RBI ने स्पष्ट किया है कि भारत के करंसी नोटों में मौजूदा महात्मा गांधी सीरीज़ में कोई बदलाव करने का कोई प्रस्ताव नहीं है।",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 670000
+  },
+  {
+    "original_claim": "യുപിഐ (UPI) സേവനങ്ങൾക്ക് ഇനി മുതൽ ചാർജ് ഈടാക്കും",
+    "debunk_summary": "സാധാരണ യുപിഐ ഇടപാടുകൾക്ക് യാതൊരു ചാർജും ഇല്ലെന്ന് കേന്ദ്ര ധനകാര്യ മന്ത്രാലയം വ്യക്തമാക്കിയിട്ടുണ്ട്.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 780000
+  },
+  {
+    "original_claim": "The Indian government has passed a law to seize all private gold exceeding 500 grams per married woman.",
+    "debunk_summary": "No such new law has been passed. The CBDT issued a clarification citing old rules that gold up to 500g for married women and 250g for unmarried women will not be seized during income tax raids, but this does not limit ownership.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 4800000
+  },
+  {
+    "original_claim": "Himalayan salt lamps absorb negative energy and cure respiratory completely by emitting negative ions.",
+    "debunk_summary": "Scientific studies show Himalayan salt lamps emit virtually no negative ions and have no proven medical benefit for respiratory diseases. Air purifiers with HEPA filters are required for real air quality improvement.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 890000
+  },
+  {
+    "original_claim": "The Reserve Bank of India has issued a new ₹1000 note with the signature of the new governor.",
+    "debunk_summary": "The RBI has officially stated that no new ₹1000 denomination notes have been issued since their demonetization in 2016.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 1400000
+  },
+  {
+    "original_claim": "Electric vehicles (EVs) are catching fire because 5G networks interfere with their battery management systems.",
+    "debunk_summary": "EV fires are primarily caused by thermal runaway due to battery defects, poor thermal management, or physical damage. 5G signals operate on entirely different frequencies and cannot interfere with wired internal vehicle systems.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 615000
+  },
+  {
+    "original_claim": "இந்தியாவில் புதிய ₹1000 நோட்டுகள் வெளியிடப்பட்டுள்ளன",
+    "debunk_summary": "இந்திய ரிசர்வ் வங்கி புதிய ₹1000 நோட்டுகளை வெளியிடவில்லை என்று மறுத்துள்ளது. இது சமூக வலைதளங்களில் பரவும் வதந்தி.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 250000
+  },
+  {
+    "original_claim": "आयुर्वेदिक काढ़ा पीने से कैंसर जैसी गंभीर बीमारियां 3 दिन में जड़ से खत्म हो जाती हैं",
+    "debunk_summary": "कैंसर जैसी बीमारियों के लिए प्रॉपर मेडिकल ट्रीटमेंट और सर्जरी/कीमोथेरेपी की आवश्यकता होती है। कोई भी घरेलू काढ़ा 3 दिन में कैंसर खत्म नहीं कर सकता।",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 2100000
+  },
+  {
+    "original_claim": "ಕೇಂದ್ರ ಸರ್ಕಾರವು ಎಲ್ಲಾ ಖಾಸಗಿ ಬ್ಯಾಂಕ್‌ಗಳನ್ನು ರಾಷ್ಟ್ರೀಕರಣ ಮಾಡಲು ನಿರ್ಧರಿಸಿದೆ.",
+    "debunk_summary": "ಹಣಕಾಸು ಸಚಿವಾಲಯವು ಅಂತಹ ಯಾವುದೇ ಪ್ರಸ್ತಾಪವನ್ನು ನಿರಾಕರಿಸಿದೆ. ಬದಲಾಗಿ ಕೆಲವು ಸಾರ್ವಜನಿಕ ವಲಯದ ಬ್ಯಾಂಕ್‌ಗಳ ಖಾಸಗೀಕರಣದ ಬಗ್ಗೆ ಚರ್ಚೆಗಳು ನಡೆಯುತ್ತಿವೆ.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 120000
+  },
+  {
+    "original_claim": "Foreign Direct Investment (FDI) has completely stopped in India since 2023.",
+    "debunk_summary": "According to the Department for Promotion of Industry and Internal Trade (DPIIT), India continues to receive billions of dollars in FDI annually, though global economic conditions have caused fluctuations.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 310000
+  },
+  {
+    "original_claim": "Eating alkaline ash cures Hypertension completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 2892599
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of honeybees in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 993185
+  },
+  {
+    "original_claim": "The government has mandated that all smartphones must have a microchip implanted by July.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 2677317
+  },
+  {
+    "original_claim": "The government has mandated that all smartphones must have a microchip implanted by January.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 4273080
+  },
+  {
+    "original_claim": "Eating himalayan salt cures Type 2 Diabetes completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 443004
+  },
+  {
+    "original_claim": "Apple is giving away 5000 free smartwatches clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 3670651
+  },
+  {
+    "original_claim": "Eating warm lemon water cures Chronic Asthama completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 3794768
+  },
+  {
+    "original_claim": "Flipkart is giving away 5000 free gold coins clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 1696365
+  },
+  {
+    "original_claim": "The government has mandated that all smartphones must have a microchip implanted by October.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 3309510
+  },
+  {
+    "original_claim": "Tata is giving away 5000 free smartwatches clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 983814
+  },
+  {
+    "original_claim": "Eating himalayan salt cures Type 2 Diabetes completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 4697908
+  },
+  {
+    "original_claim": "A new tax of 45% is being secretly applied to all online shopping starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 1240487
+  },
+  {
+    "original_claim": "Flipkart is giving away 5000 free gold coins clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 240896
+  },
+  {
+    "original_claim": "The government has mandated that all vehicles must have a microchip implanted by January.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 4082333
+  },
+  {
+    "original_claim": "The government has mandated that all currency notes must have a microchip implanted by January.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 1296039
+  },
+  {
+    "original_claim": "Amazon is giving away 5000 free recharge coupons clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 663279
+  },
+  {
+    "original_claim": "Tata is giving away 5000 free smartwatches clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 1459619
+  },
+  {
+    "original_claim": "The government has mandated that all currency notes must have a microchip implanted by July.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 4293060
+  },
+  {
+    "original_claim": "The government has mandated that all smartphones must have a microchip implanted by March.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 3859502
+  },
+  {
+    "original_claim": "Amazon is giving away 5000 free smartwatches clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 2166541
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of sparrows in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 4280453
+  },
+  {
+    "original_claim": "Eating alkaline ash cures Tuberculosis completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 4457889
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of butterflies in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 2976192
+  },
+  {
+    "original_claim": "The government has mandated that all smartphones must have a microchip implanted by December.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 1693527
+  },
+  {
+    "original_claim": "A new tax of 25% is being secretly applied to all online shopping starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 4697548
+  },
+  {
+    "original_claim": "Amazon is giving away 5000 free gold coins clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 3690959
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of sparrows in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 942690
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of pigeons in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 4101963
+  },
+  {
+    "original_claim": "Eating alkaline ash cures Tuberculosis completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 4729531
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of stray dogs in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 4595207
+  },
+  {
+    "original_claim": "A new tax of 50% is being secretly applied to all UPI transfers starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 2521066
+  },
+  {
+    "original_claim": "Eating raw garlic cures Type 2 Diabetes completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 2334820
+  },
+  {
+    "original_claim": "Tata is giving away 5000 free smartwatches clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 591178
+  },
+  {
+    "original_claim": "The government has mandated that all citizens' ID cards must have a microchip implanted by January.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 991733
+  },
+  {
+    "original_claim": "The government has mandated that all smartphones must have a microchip implanted by October.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 2709518
+  },
+  {
+    "original_claim": "A new tax of 15% is being secretly applied to all cash withdrawals starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 4103471
+  },
+  {
+    "original_claim": "The government has mandated that all citizens' ID cards must have a microchip implanted by December.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 603022
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of pigeons in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 2962912
+  },
+  {
+    "original_claim": "Tata is giving away 5000 free gold coins clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 2128560
+  },
+  {
+    "original_claim": "Tata is giving away 5000 free holiday packages clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 4558198
+  },
+  {
+    "original_claim": "The government has mandated that all citizens' ID cards must have a microchip implanted by December.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 1889838
+  },
+  {
+    "original_claim": "Eating alkaline ash cures Tuberculosis completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 2050380
+  },
+  {
+    "original_claim": "Flipkart is giving away 5000 free laptops clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 3579694
+  },
+  {
+    "original_claim": "Eating bitter gourd juice cures Tuberculosis completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 131648
+  },
+  {
+    "original_claim": "Flipkart is giving away 5000 free laptops clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 3320093
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of butterflies in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 1868049
+  },
+  {
+    "original_claim": "Amazon is giving away 5000 free recharge coupons clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 4273413
+  },
+  {
+    "original_claim": "A new tax of 30% is being secretly applied to all railway ticket bookings starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 4429235
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of pigeons in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 3272933
+  },
+  {
+    "original_claim": "Eating raw garlic cures Type 2 Diabetes completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 4616952
+  },
+  {
+    "original_claim": "The government has mandated that all currency notes must have a microchip implanted by December.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 1668677
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of honeybees in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 1957497
+  },
+  {
+    "original_claim": "Eating alkaline ash cures Chronic Asthama completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 4771440
+  },
+  {
+    "original_claim": "Amazon is giving away 5000 free gold coins clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 59653
+  },
+  {
+    "original_claim": "A new tax of 25% is being secretly applied to all cash withdrawals starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 2987895
+  },
+  {
+    "original_claim": "Eating warm lemon water cures Type 2 Diabetes completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 3234787
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of honeybees in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 3972859
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of pigeons in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 2672461
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of pigeons in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 111726
+  },
+  {
+    "original_claim": "Eating himalayan salt cures Tuberculosis completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 3512545
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of butterflies in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 2112120
+  },
+  {
+    "original_claim": "A new tax of 30% is being secretly applied to all online shopping starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 2345675
+  },
+  {
+    "original_claim": "The government has mandated that all smartphones must have a microchip implanted by July.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 2723638
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of pigeons in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 3885045
+  },
+  {
+    "original_claim": "A new tax of 25% is being secretly applied to all railway ticket bookings starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 1832098
+  },
+  {
+    "original_claim": "A new tax of 30% is being secretly applied to all railway ticket bookings starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 3074740
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of honeybees in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 3603730
+  },
+  {
+    "original_claim": "A new tax of 15% is being secretly applied to all WhatsApp messages starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 4130092
+  },
+  {
+    "original_claim": "Eating warm lemon water cures Tuberculosis completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 992401
+  },
+  {
+    "original_claim": "Eating raw garlic cures Tuberculosis completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 430035
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of sparrows in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 4068695
+  },
+  {
+    "original_claim": "A new tax of 25% is being secretly applied to all online shopping starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 1045354
+  },
+  {
+    "original_claim": "Eating warm lemon water cures Chronic Asthama completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 1505331
+  },
+  {
+    "original_claim": "The government has mandated that all school bags must have a microchip implanted by March.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 4536636
+  },
+  {
+    "original_claim": "Reliance is giving away 5000 free recharge coupons clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 292827
+  },
+  {
+    "original_claim": "The government has mandated that all vehicles must have a microchip implanted by December.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 2270852
+  },
+  {
+    "original_claim": "The government has mandated that all citizens' ID cards must have a microchip implanted by December.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 3030586
+  },
+  {
+    "original_claim": "Eating alkaline ash cures Chronic Asthama completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 3604425
+  },
+  {
+    "original_claim": "Apple is giving away 5000 free holiday packages clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 905683
+  },
+  {
+    "original_claim": "Eating alkaline ash cures Type 2 Diabetes completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 628426
+  },
+  {
+    "original_claim": "Amazon is giving away 5000 free holiday packages clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 3034937
+  },
+  {
+    "original_claim": "Tata is giving away 5000 free recharge coupons clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 4055098
+  },
+  {
+    "original_claim": "Reliance is giving away 5000 free smartwatches clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 914926
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of honeybees in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 3779073
+  },
+  {
+    "original_claim": "The government has mandated that all citizens' ID cards must have a microchip implanted by July.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 3118766
+  },
+  {
+    "original_claim": "The government has mandated that all school bags must have a microchip implanted by July.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 1752096
+  },
+  {
+    "original_claim": "Apple is giving away 5000 free laptops clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 1272483
+  },
+  {
+    "original_claim": "Flipkart is giving away 5000 free holiday packages clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 4282968
+  },
+  {
+    "original_claim": "Eating warm lemon water cures Chronic Asthama completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 894096
+  },
+  {
+    "original_claim": "The government has mandated that all citizens' ID cards must have a microchip implanted by December.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 2156855
+  },
+  {
+    "original_claim": "Tata is giving away 5000 free laptops clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 4267401
+  },
+  {
+    "original_claim": "The government has mandated that all vehicles must have a microchip implanted by October.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 1843740
+  },
+  {
+    "original_claim": "The government has mandated that all school bags must have a microchip implanted by March.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 4597274
+  },
+  {
+    "original_claim": "A new tax of 45% is being secretly applied to all cash withdrawals starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 1364320
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of butterflies in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 4728228
+  },
+  {
+    "original_claim": "The government has mandated that all citizens' ID cards must have a microchip implanted by March.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 207678
+  },
+  {
+    "original_claim": "A new tax of 30% is being secretly applied to all UPI transfers starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 3181855
+  },
+  {
+    "original_claim": "Reliance is giving away 5000 free laptops clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 3821570
+  },
+  {
+    "original_claim": "Eating alkaline ash cures Viral Influenza completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 3880508
+  },
+  {
+    "original_claim": "Eating raw garlic cures Type 2 Diabetes completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 234231
+  },
+  {
+    "original_claim": "A new tax of 25% is being secretly applied to all cash withdrawals starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "te",
+    "spread_count": 798120
+  },
+  {
+    "original_claim": "The government has mandated that all school bags must have a microchip implanted by October.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 2923770
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of honeybees in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 4862772
+  },
+  {
+    "original_claim": "The government has mandated that all school bags must have a microchip implanted by March.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 1949321
+  },
+  {
+    "original_claim": "Apple is giving away 5000 free gold coins clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 4449890
+  },
+  {
+    "original_claim": "The government has mandated that all citizens' ID cards must have a microchip implanted by March.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 435263
+  },
+  {
+    "original_claim": "A new tax of 25% is being secretly applied to all UPI transfers starting tomorrow.",
+    "debunk_summary": "The Finance Ministry has debunked this rumor; no such arbitrary tax has been introduced.",
+    "verdict": "false",
+    "language": "hi",
+    "spread_count": 4209553
+  },
+  {
+    "original_claim": "The government has mandated that all currency notes must have a microchip implanted by July.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 3487334
+  },
+  {
+    "original_claim": "Apple is giving away 5000 free smartwatches clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 4081167
+  },
+  {
+    "original_claim": "Amazon is giving away 5000 free laptops clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "en",
+    "spread_count": 1436724
+  },
+  {
+    "original_claim": "Eating raw garlic cures Chronic Asthama completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 338733
+  },
+  {
+    "original_claim": "Reliance is giving away 5000 free holiday packages clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 1411515
+  },
+  {
+    "original_claim": "Tata is giving away 5000 free gold coins clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 2588838
+  },
+  {
+    "original_claim": "Amazon is giving away 5000 free holiday packages clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 4616605
+  },
+  {
+    "original_claim": "Reliance is giving away 5000 free smartwatches clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 661240
+  },
+  {
+    "original_claim": "Tata is giving away 5000 free gold coins clicking this WhatsApp link.",
+    "debunk_summary": "This is a widespread phishing scam designed to harvest personal information.",
+    "verdict": "false",
+    "language": "kn",
+    "spread_count": 4272857
+  },
+  {
+    "original_claim": "The government has mandated that all school bags must have a microchip implanted by January.",
+    "debunk_summary": "There is no official mandate requiring microchips in these items. This is a recurring conspiracy theory.",
+    "verdict": "false",
+    "language": "ta",
+    "spread_count": 2156741
+  },
+  {
+    "original_claim": "New 5G towers are causing a sudden mass death of pigeons in the city.",
+    "debunk_summary": "Scientific studies have repeatedly shown non-ionizing radiation from cellular towers does not harm local wildlife.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 514388
+  },
+  {
+    "original_claim": "Eating alkaline ash cures Hypertension completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "ml",
+    "spread_count": 4442951
+  },
+  {
+    "original_claim": "Eating alkaline ash cures Hypertension completely within 3 days without any medication.",
+    "debunk_summary": "Medical experts clarify that while nutritious, no single food cures this disease instantly.",
+    "verdict": "false",
+    "language": "mr",
+    "spread_count": 3521581
   }
 ]

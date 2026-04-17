@@ -6,6 +6,9 @@ from html.parser import HTMLParser
 
 import httpx
 
+from app.config import settings
+from app.services.retry_utils import retry_call
+
 logger = logging.getLogger(__name__)
 
 MAX_FETCH_LENGTH = 500_000
@@ -49,11 +52,14 @@ def fetch_url_content(url: str, max_length: int = 10_000) -> str:
         return url
 
     try:
-        resp = httpx.get(
-            url,
-            timeout=TIMEOUT,
-            follow_redirects=True,
-            headers={"User-Agent": "SatyaNet-AI/1.0 (Fact-Checking Bot)"},
+        resp = retry_call(
+            lambda: httpx.get(
+                url,
+                timeout=settings.external_http_timeout_seconds or TIMEOUT,
+                follow_redirects=True,
+                headers={"User-Agent": "SatyaNet-AI/1.0 (Fact-Checking Bot)"},
+            ),
+            attempts=settings.external_http_retries,
         )
         resp.raise_for_status()
     except Exception as e:

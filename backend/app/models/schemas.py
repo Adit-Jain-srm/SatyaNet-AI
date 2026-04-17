@@ -55,6 +55,7 @@ class SourceScore(BaseModel):
 
 class CredibilityBreakdown(BaseModel):
     ai_generation_score: float = Field(ge=0.0, le=1.0, description="Probability content is AI-generated")
+    web_search_score: float = Field(0.5, ge=0.0, le=1.0, description="Direct web search verification score")
     fact_evidence_score: float = Field(ge=0.0, le=1.0, description="How well facts match verified evidence")
     source_credibility_score: float = Field(ge=0.0, le=1.0, description="Trustworthiness of source")
     misinfo_pattern_score: float = Field(ge=0.0, le=1.0, description="Match against known misinfo patterns")

@@ -25,6 +25,7 @@ from app.services.credibility_scorer import (
     score_to_verdict,
 )
 from app.services.explanation_engine import generate_explanation
+from app.services.explanation_engine import score_credibility_with_llm
 from app.services.fact_retriever import (
     find_matching_misinfo,
     get_source_credibility,
@@ -37,6 +38,7 @@ from app.services.news_api import search_news
 from app.services.translator import translate_text
 from app.services.url_fetcher import fetch_url_content
 from app.services.video_analyzer import analyze_video_content
+from app.services.web_search import verify_claim_via_web
 
 logger = logging.getLogger(__name__)
 
@@ -67,10 +69,9 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
         detection_method = "user_override"
         log.append(f"Language: {language} (user specified)")
     else:
-        # For image/audio/video, richer text can be derived later in this function.
-        # We defer detection until modality-specific extraction is complete.
-        language = ""
-        detection_method = ""
+        lang_input = text_content if text_content and not text_content.startswith("(") else "analysis"
+        language, detection_method = detect_language_with_method(lang_input)
+        log.append(f"Language detected: {language} via {detection_method}")
 
     image_result = None
     ai_gen_score = 0.0
@@ -115,11 +116,6 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
         text_content = text_content or "(Video content submitted for analysis)"
         log.append(f"Video analysis: deepfake probability {vid_analysis['deepfake_probability']:.1%}")
 
-    if not request.language:
-        lang_input = text_content if text_content and not text_content.startswith("(") else "analysis"
-        language, detection_method = detect_language_with_method(lang_input)
-        log.append(f"Language detected: {language} via {detection_method}")
-
     claims = _safe_extract_claims(text_content)
     log.append(f"Claim extraction: {len(claims)} claim(s) found")
 
@@ -131,6 +127,7 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
     all_misinfo: list[dict] = []
     all_external: list[dict] = []
     all_sources: list[dict] = []
+    all_web_scores: list[float] = []
     claim_results: list[ClaimResult] = []
 
     for claim_text in claims:
@@ -154,11 +151,31 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
         gfc_reviews = search_claims(claim_text, language)
         gfc_score = google_reviews_to_score(gfc_reviews)
         gfc_verdict = get_factcheck_verdict(gfc_reviews)
+        web_verification = verify_claim_via_web(claim_text, language)
+        web_score = 0.5
 
         all_evidence.extend(evidence)
         all_misinfo.extend(misinfo)
         all_external.extend(gfc_reviews)
         all_sources.extend(matched_src)
+        if web_verification:
+            web_score = float(web_verification.get("web_confidence", 0.5))
+            all_web_scores.append(web_score)
+            all_evidence.append(
+                {
+                    "collection": "web_search",
+                    "text": web_verification.get("web_evidence_text", ""),
+                    "source": ", ".join(web_verification.get("web_source_urls", [])[:3]) or "web_search",
+                    "url": web_verification.get("web_source_urls", [""])[0] if web_verification.get("web_source_urls") else "",
+                    "relevance_score": web_score,
+                    "credibility_score": web_score,
+                }
+            )
+            log.append(
+                f"Web search for '{claim_text[:40]}...': confidence {web_score:.1%}"
+            )
+        else:
+            all_web_scores.append(web_score)
 
         best_evidence_score = max((e["relevance_score"] for e in evidence), default=0.0)
         best_misinfo_score = max((m["similarity"] for m in misinfo), default=0.0)
@@ -170,6 +187,7 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
             misinfo_pattern_score=best_misinfo_score,
             emotional_language_score=emotional_score,
             google_factcheck_score=gfc_score,
+            web_search_score=web_score,
         )
 
         verdict_str = gfc_verdict or score_to_verdict(claim_credibility)
@@ -212,6 +230,9 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
     log.append(f"Qdrant misinfo_patterns: {len(all_misinfo)} match(es) above threshold")
     log.append(f"Qdrant source_credibility: {len(all_sources)} source(s) matched")
     log.append(f"Google Fact Check: {len(all_external)} external review(s)")
+    if all_web_scores:
+        avg_web_for_log = sum(all_web_scores) / len(all_web_scores)
+        log.append(f"Web Search: {len(all_web_scores)} claim(s) verified via web, avg confidence {avg_web_for_log:.1%}")
 
     qdrant_stats = [
         QdrantStats(
@@ -250,29 +271,58 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
         if all_evidence else 0.0
     )
     avg_misinfo = max((m["similarity"] for m in all_misinfo), default=0.0)
-    avg_source, _ = get_source_credibility(qdrant, text_content[:200], top_k=3)
+    avg_source = (
+        sum(s.get("trust_score", 0.5) for s in all_sources) / len(all_sources)
+        if all_sources else 0.5
+    )
     avg_gfc = google_reviews_to_score(all_external)
+    avg_web = sum(all_web_scores) / len(all_web_scores) if all_web_scores else 0.5
 
-    overall_credibility, breakdown = compute_credibility(
+    signal_credibility, breakdown = compute_credibility(
         ai_generation_score=ai_gen_score,
         fact_evidence_score=avg_evidence,
         source_credibility_score=avg_source,
         misinfo_pattern_score=avg_misinfo,
         emotional_language_score=emotional_score,
         google_factcheck_score=avg_gfc,
+        web_search_score=avg_web,
     )
 
-    overall_verdict = Verdict(score_to_verdict(overall_credibility))
+    llm_score_result = score_credibility_with_llm(
+        content=text_content,
+        claims=[c.claim for c in claim_results],
+        language=language,
+        signals={
+            "ai_generation_score": ai_gen_score,
+            "web_search_score": avg_web,
+            "fact_evidence_score": avg_evidence,
+            "source_credibility_score": avg_source,
+            "misinfo_pattern_score": avg_misinfo,
+            "emotional_language_score": emotional_score,
+            "google_factcheck_score": avg_gfc,
+        },
+        evidence=all_evidence[:5],
+        misinfo_matches=all_misinfo[:3],
+        external_reviews=all_external[:3],
+    )
+
+    # Final score/verdict come from GPT (non-weighted) when available.
+    # Fall back to signal-based score only if GPT scoring fails.
+    overall_credibility = llm_score_result.get("credibility_score", signal_credibility)
+    overall_verdict = Verdict(llm_score_result.get("verdict", score_to_verdict(signal_credibility)))
 
     signal_verdict_reason = build_verdict_reason(
-        score=overall_credibility,
+        score=signal_credibility,
         verdict=overall_verdict.value,
         breakdown=breakdown,
         misinfo_count=len(all_misinfo),
         external_count=len(all_external),
         evidence_count=len(all_evidence),
     )
-    log.append(f"Final credibility: {overall_credibility:.1%} -> {overall_verdict.value}")
+    if llm_score_result:
+        log.append(f"Final credibility (GPT): {overall_credibility:.1%} -> {overall_verdict.value}")
+    else:
+        log.append(f"Final credibility (fallback signals): {overall_credibility:.1%} -> {overall_verdict.value}")
     log.append(f"Verdict reason: {signal_verdict_reason}")
 
     top_external = [
@@ -299,7 +349,7 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
         external_reviews=all_external[:3],
     )
 
-    llm_verdict_reason = explanation_result.get("verdict_reason", "")
+    llm_verdict_reason = llm_score_result.get("verdict_reason") or explanation_result.get("verdict_reason", "")
     final_verdict_reason = llm_verdict_reason if llm_verdict_reason else signal_verdict_reason
 
     return AnalysisResponse(

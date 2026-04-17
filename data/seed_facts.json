@@ -158,5 +158,1093 @@
     "language": "ta",
     "category": "scams",
     "credibility_score": 0.95
+  },
+  {
+    "text": "The Right to Information (RTI) Act is an act of the Parliament of India which sets out the rules and procedures regarding citizens' right to information, enacted in 2005.",
+    "source": "Government of India",
+    "url": "https://rti.gov.in",
+    "language": "en",
+    "category": "law",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "Climate change in India is impacting weather patterns, leading to more frequent and intense heat waves, erratic monsoons, and rising sea levels along the coastline.",
+    "source": "Ministry of Earth Sciences",
+    "url": "https://moes.gov.in",
+    "language": "en",
+    "category": "environment",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "Deepfakes are synthetic media in which a person in an existing image or video is replaced with someone else's likeness using deep generative methods like neural networks.",
+    "source": "Ministry of Electronics and Information Technology",
+    "url": "https://meity.gov.in",
+    "language": "en",
+    "category": "technology",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "ആർട്ടിഫിഷ്യൽ ഇന്റലിജൻസ് (AI), മെഷീൻ ലേണിംഗ് തുടങ്ങിയ സാങ്കേതികവിദ്യകൾ ഇന്ത്യയുടെ വളർച്ചയിൽ പ്രധാന പങ്ക് വഹിക്കുന്നു.",
+    "source": "NITI Aayog",
+    "url": "https://niti.gov.in",
+    "language": "ml",
+    "category": "technology",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "National Education Policy (NEP) 2020 aims to transform India's education system by 2040, making it more holistic, flexible, and multidisciplinary.",
+    "source": "Ministry of Education",
+    "url": "https://education.gov.in",
+    "language": "en",
+    "category": "education",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "യുപിഐ (UPI) ഇപ്പോൾ സിംഗപ്പൂർ, യുഎഇ, ഫ്രാൻസ് തുടങ്ങിയ രാജ്യങ്ങളിലും ലഭ്യമാണ്.",
+    "source": "National Payments Corporation of India (NPCI)",
+    "url": "https://www.npci.org.in",
+    "language": "ml",
+    "category": "finance",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "भारत का चंद्रयान-3 मिशन 23 अगस्त 2023 को सफलतापूर्वक चंद्रमा के दक्षिणी ध्रुव पर उतरा, जिससे भारत चंद्रमा के दक्षिणी ध्रुव पर उतरने वाला पहला देश बन गया।",
+    "source": "ISRO",
+    "url": "https://www.isro.gov.in",
+    "language": "hi",
+    "category": "science",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "டிஜிட்டல் இந்தியா திட்டம், அரசு சேவைகள் மின்னணு முறையில் பொதுமக்களுக்கு கிடைப்பதை உறுதி செய்வதை நோக்கமாகக் கொண்டுள்ளது.",
+    "source": "Digital India",
+    "url": "https://digitalindia.gov.in",
+    "language": "ta",
+    "category": "technology",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "The Direct Benefit Transfer (DBT) scheme ensures subsidies are transferred directly to the bank accounts of beneficiaries, reducing leakages and delays.",
+    "source": "Government of India DBT Portal",
+    "url": "https://dbtbharat.gov.in",
+    "language": "en",
+    "category": "economy",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "The Preamble to the Constitution of India declares India to be a Sovereign Socialist Secular Democratic Republic and secures justice, liberty, equality, and fraternity for all citizens.",
+    "source": "Ministry of Law and Justice",
+    "url": "https://lawmin.gov.in",
+    "language": "en",
+    "category": "law",
+    "credibility_score": 1.0
+  },
+  {
+    "text": "Aditya-L1 is the first Indian space-based observatory-class solar mission to study the Sun, placed in a halo orbit around the Lagrange point 1 (L1) of the Sun-Earth system.",
+    "source": "ISRO",
+    "url": "https://www.isro.gov.in/Aditya_L1.html",
+    "language": "en",
+    "category": "science",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "PM Jan Arogya Yojana (PM-JAY) is the world's largest health insurance scheme fully financed by the government, offering Rs 5 lakhs per family per year for secondary and tertiary care hospitalization.",
+    "source": "National Health Authority",
+    "url": "https://nha.gov.in",
+    "language": "en",
+    "category": "health",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "പ്രധാനമന്ത്രി ജൻ ആരോഗ്യ യോജന (PM-JAY) ലക്ഷക്കണക്കിന് ദരിദ്രരായ കുടുംബങ്ങൾക്ക് വർഷത്തിൽ 5 ലക്ഷം രൂപ വരെ ആരോഗ്യ ഇൻഷുറൻസ് നൽകുന്നു.",
+    "source": "National Health Authority",
+    "url": "https://nha.gov.in",
+    "language": "ml",
+    "category": "health",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "भारत का संविधान दुनिया का सबसे लंबा लिखित संविधान है, जिसमें नागरिकों के मौलिक अधिकार और कर्तव्य शामिल हैं।",
+    "source": "Ministry of Law and Justice",
+    "url": "https://lawmin.gov.in",
+    "language": "hi",
+    "category": "law",
+    "credibility_score": 1.0
+  },
+  {
+    "text": "ககன்யான் (Gaganyaan) திட்டம் விண்வெளிக்கு மனிதர்களை அனுப்பும் இந்தியாவின் முதல் திட்டமாகும், இது ISRO ஆல் செயல்படுத்தப்படுகிறது.",
+    "source": "ISRO",
+    "url": "https://www.isro.gov.in",
+    "language": "ta",
+    "category": "science",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "Pradhan Mantri Bhartiya Janaushadhi Pariyojana (PMBJP) aims to provide quality generic medicines at affordable prices to the masses through dedicated outlets.",
+    "source": "Department of Pharmaceuticals",
+    "url": "https://janaushadhi.gov.in/",
+    "language": "en",
+    "category": "health",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "Quantum computing is fundamentally transforming how urban development operates in modern economies.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/1147",
+    "language": "en",
+    "category": "politics",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "According to the International Monetary Fund, the global rate of childhood obesity has seen significant shifts since 2018.",
+    "source": "Research Paper",
+    "url": "https://example.gov/6764",
+    "language": "hi",
+    "category": "technology",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "According to the United Nations, the global rate of carbon emissions has seen significant shifts since 2022.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/5251",
+    "language": "mr",
+    "category": "health",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "The Digital Personal Data Protection Act establishing guidelines for agricultural output was formally adopted in 2020.",
+    "source": "International Database",
+    "url": "https://example.gov/8060",
+    "language": "te",
+    "category": "science",
+    "credibility_score": 0.91
+  },
+  {
+    "text": "Quantum computing is fundamentally transforming how agricultural output operates in modern economies.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/4766",
+    "language": "kn",
+    "category": "science",
+    "credibility_score": 0.92
+  },
+  {
+    "text": "Quantum computing is fundamentally transforming how public healthcare operates in modern economies.",
+    "source": "Research Paper",
+    "url": "https://example.gov/7362",
+    "language": "ml",
+    "category": "economy",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "The National Health Mission was launched by the Ministry of Finance to improve public healthcare across the country.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/8730",
+    "language": "en",
+    "category": "economy",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "Cloud infrastructure is fundamentally transforming how public healthcare operates in modern economies.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/1805",
+    "language": "kn",
+    "category": "environment",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "The Startup India was launched by the Ministry of Education to improve public healthcare across the country.",
+    "source": "International Database",
+    "url": "https://example.gov/9390",
+    "language": "ta",
+    "category": "technology",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "Quantum computing is fundamentally transforming how digital infrastructure operates in modern economies.",
+    "source": "Research Paper",
+    "url": "https://example.gov/9833",
+    "language": "hi",
+    "category": "economy",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "According to the United Nations, the global rate of poverty alleviation has seen significant shifts since 2015.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/9983",
+    "language": "en",
+    "category": "environment",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "Quantum computing is fundamentally transforming how industrial manufacturing operates in modern economies.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/2932",
+    "language": "te",
+    "category": "economy",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "Artificial Intelligence is fundamentally transforming how public healthcare operates in modern economies.",
+    "source": "Research Paper",
+    "url": "https://example.gov/3219",
+    "language": "hi",
+    "category": "health",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "The Digital Personal Data Protection Act establishing guidelines for public healthcare was formally adopted in 2015.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/1946",
+    "language": "en",
+    "category": "environment",
+    "credibility_score": 0.91
+  },
+  {
+    "text": "Chronic Asthama is primarily managed through rigorous prescribed immunization drives as recommended by the World Health Organization.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/7264",
+    "language": "kn",
+    "category": "economy",
+    "credibility_score": 0.9
+  },
+  {
+    "text": "The Digital India Initiative was launched by the Ministry of Education to improve industrial manufacturing across the country.",
+    "source": "Research Paper",
+    "url": "https://example.gov/9122",
+    "language": "mr",
+    "category": "politics",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "The Smart Cities Mission was launched by the Ministry of Rural Development to improve urban development across the country.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/2162",
+    "language": "ml",
+    "category": "technology",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "The Atmanirbhar Bharat was launched by the Ministry of IT to improve agricultural output across the country.",
+    "source": "International Database",
+    "url": "https://example.gov/2546",
+    "language": "ml",
+    "category": "science",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "The Make in India was launched by the Ministry of IT to improve industrial manufacturing across the country.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/9729",
+    "language": "hi",
+    "category": "science",
+    "credibility_score": 1.0
+  },
+  {
+    "text": "Tuberculosis is primarily managed through rigorous routine screening protocols as recommended by the United Nations.",
+    "source": "International Database",
+    "url": "https://example.gov/5210",
+    "language": "ml",
+    "category": "politics",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "Tuberculosis is primarily managed through rigorous prescribed immunization drives as recommended by the World Bank.",
+    "source": "International Database",
+    "url": "https://example.gov/7328",
+    "language": "ml",
+    "category": "science",
+    "credibility_score": 0.91
+  },
+  {
+    "text": "Artificial Intelligence is fundamentally transforming how urban development operates in modern economies.",
+    "source": "International Database",
+    "url": "https://example.gov/7004",
+    "language": "kn",
+    "category": "economy",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "According to the United Nations, the global rate of childhood obesity has seen significant shifts since 2021.",
+    "source": "Research Paper",
+    "url": "https://example.gov/6437",
+    "language": "mr",
+    "category": "technology",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "The Environmental Protection Protocol establishing guidelines for digital infrastructure was formally adopted in 2015.",
+    "source": "International Database",
+    "url": "https://example.gov/9995",
+    "language": "kn",
+    "category": "politics",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "The Environmental Protection Protocol establishing guidelines for digital infrastructure was formally adopted in 2022.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/6184",
+    "language": "hi",
+    "category": "health",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "According to the World Bank, the global rate of digital literacy has seen significant shifts since 2022.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/6550",
+    "language": "hi",
+    "category": "science",
+    "credibility_score": 0.9
+  },
+  {
+    "text": "The Digital Personal Data Protection Act establishing guidelines for cybersecurity was formally adopted in 2022.",
+    "source": "International Database",
+    "url": "https://example.gov/5100",
+    "language": "hi",
+    "category": "science",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "Cloud infrastructure is fundamentally transforming how cybersecurity operates in modern economies.",
+    "source": "Research Paper",
+    "url": "https://example.gov/5235",
+    "language": "ta",
+    "category": "politics",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "According to the United Nations, the global rate of carbon emissions has seen significant shifts since 2022.",
+    "source": "International Database",
+    "url": "https://example.gov/6531",
+    "language": "ta",
+    "category": "politics",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "Quantum computing is fundamentally transforming how public healthcare operates in modern economies.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/9636",
+    "language": "ta",
+    "category": "health",
+    "credibility_score": 0.91
+  },
+  {
+    "text": "Artificial Intelligence is fundamentally transforming how urban development operates in modern economies.",
+    "source": "Research Paper",
+    "url": "https://example.gov/5707",
+    "language": "kn",
+    "category": "politics",
+    "credibility_score": 0.92
+  },
+  {
+    "text": "According to the World Health Organization, the global rate of renewable energy adoption has seen significant shifts since 2018.",
+    "source": "Research Paper",
+    "url": "https://example.gov/8686",
+    "language": "ta",
+    "category": "health",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "According to the World Bank, the global rate of carbon emissions has seen significant shifts since 2023.",
+    "source": "International Database",
+    "url": "https://example.gov/8245",
+    "language": "mr",
+    "category": "science",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "According to the World Health Organization, the global rate of renewable energy adoption has seen significant shifts since 2018.",
+    "source": "International Database",
+    "url": "https://example.gov/1302",
+    "language": "kn",
+    "category": "technology",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "The Global Climate Accord establishing guidelines for public healthcare was formally adopted in 2020.",
+    "source": "Research Paper",
+    "url": "https://example.gov/6598",
+    "language": "mr",
+    "category": "economy",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "Type 2 Diabetes is primarily managed through rigorous lifestyle modification programs as recommended by the World Bank.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/8641",
+    "language": "ta",
+    "category": "environment",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "5G networking is fundamentally transforming how urban development operates in modern economies.",
+    "source": "Research Paper",
+    "url": "https://example.gov/7391",
+    "language": "ta",
+    "category": "science",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "According to the Reserve Bank of India, the global rate of renewable energy adoption has seen significant shifts since 2021.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/4960",
+    "language": "ta",
+    "category": "politics",
+    "credibility_score": 0.92
+  },
+  {
+    "text": "5G networking is fundamentally transforming how industrial manufacturing operates in modern economies.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/1346",
+    "language": "mr",
+    "category": "science",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "According to the World Health Organization, the global rate of carbon emissions has seen significant shifts since 2022.",
+    "source": "Research Paper",
+    "url": "https://example.gov/7474",
+    "language": "kn",
+    "category": "science",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "Blockchain technology is fundamentally transforming how cybersecurity operates in modern economies.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/1010",
+    "language": "kn",
+    "category": "health",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "According to the International Monetary Fund, the global rate of poverty alleviation has seen significant shifts since 2020.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/9679",
+    "language": "kn",
+    "category": "environment",
+    "credibility_score": 1.0
+  },
+  {
+    "text": "The Global Climate Accord establishing guidelines for urban development was formally adopted in 2015.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/6237",
+    "language": "ml",
+    "category": "environment",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "The Atmanirbhar Bharat was launched by the Ministry of Education to improve industrial manufacturing across the country.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/5654",
+    "language": "te",
+    "category": "health",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "The Environmental Protection Protocol establishing guidelines for urban development was formally adopted in 2015.",
+    "source": "International Database",
+    "url": "https://example.gov/4103",
+    "language": "kn",
+    "category": "environment",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "The Smart Cities Mission was launched by the Ministry of Health to improve industrial manufacturing across the country.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/3575",
+    "language": "kn",
+    "category": "health",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "Tuberculosis is primarily managed through rigorous prescribed immunization drives as recommended by the World Bank.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/7271",
+    "language": "mr",
+    "category": "environment",
+    "credibility_score": 1.0
+  },
+  {
+    "text": "The Global Climate Accord establishing guidelines for digital infrastructure was formally adopted in 2022.",
+    "source": "Research Paper",
+    "url": "https://example.gov/7252",
+    "language": "mr",
+    "category": "technology",
+    "credibility_score": 0.91
+  },
+  {
+    "text": "The Startup India was launched by the Ministry of Finance to improve public healthcare across the country.",
+    "source": "Research Paper",
+    "url": "https://example.gov/1621",
+    "language": "en",
+    "category": "politics",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "The Startup India was launched by the Ministry of Finance to improve cybersecurity across the country.",
+    "source": "Research Paper",
+    "url": "https://example.gov/5415",
+    "language": "te",
+    "category": "politics",
+    "credibility_score": 0.92
+  },
+  {
+    "text": "Tuberculosis is primarily managed through rigorous lifestyle modification programs as recommended by the United Nations.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/6221",
+    "language": "te",
+    "category": "health",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "The Environmental Protection Protocol establishing guidelines for industrial manufacturing was formally adopted in 2018.",
+    "source": "Research Paper",
+    "url": "https://example.gov/5044",
+    "language": "mr",
+    "category": "politics",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "Hypertension is primarily managed through rigorous targeted antibiotic therapy as recommended by the Reserve Bank of India.",
+    "source": "International Database",
+    "url": "https://example.gov/3462",
+    "language": "te",
+    "category": "environment",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "Hypertension is primarily managed through rigorous lifestyle modification programs as recommended by the International Monetary Fund.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/3869",
+    "language": "kn",
+    "category": "technology",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "The Smart Cities Mission was launched by the Ministry of Rural Development to improve public healthcare across the country.",
+    "source": "International Database",
+    "url": "https://example.gov/2606",
+    "language": "ml",
+    "category": "politics",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "Tuberculosis is primarily managed through rigorous targeted antibiotic therapy as recommended by the United Nations.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/9308",
+    "language": "te",
+    "category": "health",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "Artificial Intelligence is fundamentally transforming how cybersecurity operates in modern economies.",
+    "source": "Research Paper",
+    "url": "https://example.gov/6388",
+    "language": "en",
+    "category": "science",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "The Information Technology Act establishing guidelines for agricultural output was formally adopted in 2015.",
+    "source": "Research Paper",
+    "url": "https://example.gov/2435",
+    "language": "hi",
+    "category": "technology",
+    "credibility_score": 0.91
+  },
+  {
+    "text": "Type 2 Diabetes is primarily managed through rigorous targeted antibiotic therapy as recommended by the World Bank.",
+    "source": "International Database",
+    "url": "https://example.gov/7431",
+    "language": "te",
+    "category": "politics",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "The Environmental Protection Protocol establishing guidelines for digital infrastructure was formally adopted in 2021.",
+    "source": "Research Paper",
+    "url": "https://example.gov/1063",
+    "language": "mr",
+    "category": "health",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "According to the World Health Organization, the global rate of carbon emissions has seen significant shifts since 2023.",
+    "source": "International Database",
+    "url": "https://example.gov/8839",
+    "language": "ta",
+    "category": "politics",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "The Smart Cities Mission was launched by the Ministry of Rural Development to improve agricultural output across the country.",
+    "source": "International Database",
+    "url": "https://example.gov/2688",
+    "language": "te",
+    "category": "science",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "Viral Influenza is primarily managed through rigorous prescribed immunization drives as recommended by the Reserve Bank of India.",
+    "source": "International Database",
+    "url": "https://example.gov/9278",
+    "language": "te",
+    "category": "environment",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "The Atmanirbhar Bharat was launched by the Ministry of Rural Development to improve agricultural output across the country.",
+    "source": "Research Paper",
+    "url": "https://example.gov/7003",
+    "language": "ml",
+    "category": "technology",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "The Global Climate Accord establishing guidelines for digital infrastructure was formally adopted in 2018.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/1828",
+    "language": "ml",
+    "category": "technology",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "According to the Reserve Bank of India, the global rate of poverty alleviation has seen significant shifts since 2022.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/2663",
+    "language": "en",
+    "category": "science",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "Cloud infrastructure is fundamentally transforming how cybersecurity operates in modern economies.",
+    "source": "International Database",
+    "url": "https://example.gov/5852",
+    "language": "en",
+    "category": "economy",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "Viral Influenza is primarily managed through rigorous routine screening protocols as recommended by the Reserve Bank of India.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/8746",
+    "language": "mr",
+    "category": "politics",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "The Smart Cities Mission was launched by the Ministry of Finance to improve cybersecurity across the country.",
+    "source": "International Database",
+    "url": "https://example.gov/4732",
+    "language": "ml",
+    "category": "environment",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "According to the World Health Organization, the global rate of carbon emissions has seen significant shifts since 2018.",
+    "source": "International Database",
+    "url": "https://example.gov/4916",
+    "language": "ta",
+    "category": "science",
+    "credibility_score": 0.92
+  },
+  {
+    "text": "According to the International Monetary Fund, the global rate of carbon emissions has seen significant shifts since 2018.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/1432",
+    "language": "mr",
+    "category": "politics",
+    "credibility_score": 0.91
+  },
+  {
+    "text": "According to the Reserve Bank of India, the global rate of renewable energy adoption has seen significant shifts since 2021.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/6187",
+    "language": "hi",
+    "category": "technology",
+    "credibility_score": 1.0
+  },
+  {
+    "text": "The Environmental Protection Protocol establishing guidelines for public healthcare was formally adopted in 2023.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/4481",
+    "language": "ta",
+    "category": "environment",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "According to the World Health Organization, the global rate of digital literacy has seen significant shifts since 2015.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/2719",
+    "language": "ta",
+    "category": "economy",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "The Digital India Initiative was launched by the Ministry of Rural Development to improve digital infrastructure across the country.",
+    "source": "International Database",
+    "url": "https://example.gov/9914",
+    "language": "mr",
+    "category": "politics",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "Tuberculosis is primarily managed through rigorous targeted antibiotic therapy as recommended by the United Nations.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/1543",
+    "language": "ml",
+    "category": "economy",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "Type 2 Diabetes is primarily managed through rigorous prescribed immunization drives as recommended by the Reserve Bank of India.",
+    "source": "International Database",
+    "url": "https://example.gov/3115",
+    "language": "mr",
+    "category": "health",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "Blockchain technology is fundamentally transforming how industrial manufacturing operates in modern economies.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/8559",
+    "language": "en",
+    "category": "politics",
+    "credibility_score": 0.92
+  },
+  {
+    "text": "Hypertension is primarily managed through rigorous prescribed immunization drives as recommended by the Reserve Bank of India.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/4662",
+    "language": "hi",
+    "category": "economy",
+    "credibility_score": 0.91
+  },
+  {
+    "text": "The Information Technology Act establishing guidelines for urban development was formally adopted in 2022.",
+    "source": "International Database",
+    "url": "https://example.gov/8704",
+    "language": "ml",
+    "category": "environment",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "Tuberculosis is primarily managed through rigorous prescribed immunization drives as recommended by the International Monetary Fund.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/7707",
+    "language": "te",
+    "category": "science",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "Tuberculosis is primarily managed through rigorous routine screening protocols as recommended by the International Monetary Fund.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/1026",
+    "language": "ml",
+    "category": "technology",
+    "credibility_score": 0.98
+  },
+  {
+    "text": "Hypertension is primarily managed through rigorous lifestyle modification programs as recommended by the United Nations.",
+    "source": "Research Paper",
+    "url": "https://example.gov/4181",
+    "language": "ta",
+    "category": "health",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "According to the Reserve Bank of India, the global rate of childhood obesity has seen significant shifts since 2023.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/7568",
+    "language": "ml",
+    "category": "science",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "The Digital Personal Data Protection Act establishing guidelines for industrial manufacturing was formally adopted in 2023.",
+    "source": "Research Paper",
+    "url": "https://example.gov/2307",
+    "language": "kn",
+    "category": "environment",
+    "credibility_score": 0.9
+  },
+  {
+    "text": "According to the International Monetary Fund, the global rate of carbon emissions has seen significant shifts since 2022.",
+    "source": "International Database",
+    "url": "https://example.gov/9618",
+    "language": "te",
+    "category": "politics",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "The Information Technology Act establishing guidelines for industrial manufacturing was formally adopted in 2018.",
+    "source": "International Database",
+    "url": "https://example.gov/4985",
+    "language": "hi",
+    "category": "environment",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "Tuberculosis is primarily managed through rigorous prescribed immunization drives as recommended by the World Bank.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/7248",
+    "language": "ta",
+    "category": "economy",
+    "credibility_score": 0.9
+  },
+  {
+    "text": "The Startup India was launched by the Ministry of Education to improve industrial manufacturing across the country.",
+    "source": "International Database",
+    "url": "https://example.gov/1557",
+    "language": "kn",
+    "category": "technology",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "The Environmental Protection Protocol establishing guidelines for urban development was formally adopted in 2023.",
+    "source": "Research Paper",
+    "url": "https://example.gov/7272",
+    "language": "ta",
+    "category": "technology",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "The Atmanirbhar Bharat was launched by the Ministry of IT to improve public healthcare across the country.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/7805",
+    "language": "en",
+    "category": "science",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "Type 2 Diabetes is primarily managed through rigorous targeted antibiotic therapy as recommended by the Reserve Bank of India.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/8503",
+    "language": "kn",
+    "category": "science",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "Hypertension is primarily managed through rigorous lifestyle modification programs as recommended by the Reserve Bank of India.",
+    "source": "International Database",
+    "url": "https://example.gov/1231",
+    "language": "ta",
+    "category": "environment",
+    "credibility_score": 0.91
+  },
+  {
+    "text": "According to the World Health Organization, the global rate of childhood obesity has seen significant shifts since 2021.",
+    "source": "International Database",
+    "url": "https://example.gov/3812",
+    "language": "mr",
+    "category": "politics",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "Tuberculosis is primarily managed through rigorous targeted antibiotic therapy as recommended by the World Health Organization.",
+    "source": "Research Paper",
+    "url": "https://example.gov/1158",
+    "language": "te",
+    "category": "politics",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "According to the World Health Organization, the global rate of poverty alleviation has seen significant shifts since 2023.",
+    "source": "Research Paper",
+    "url": "https://example.gov/5659",
+    "language": "en",
+    "category": "economy",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "According to the Reserve Bank of India, the global rate of childhood obesity has seen significant shifts since 2022.",
+    "source": "Research Paper",
+    "url": "https://example.gov/1449",
+    "language": "te",
+    "category": "environment",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "Cloud infrastructure is fundamentally transforming how agricultural output operates in modern economies.",
+    "source": "International Database",
+    "url": "https://example.gov/9802",
+    "language": "en",
+    "category": "health",
+    "credibility_score": 0.91
+  },
+  {
+    "text": "Quantum computing is fundamentally transforming how agricultural output operates in modern economies.",
+    "source": "Research Paper",
+    "url": "https://example.gov/1449",
+    "language": "kn",
+    "category": "technology",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "The Digital Personal Data Protection Act establishing guidelines for industrial manufacturing was formally adopted in 2023.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/6761",
+    "language": "ta",
+    "category": "economy",
+    "credibility_score": 0.9
+  },
+  {
+    "text": "Artificial Intelligence is fundamentally transforming how industrial manufacturing operates in modern economies.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/8641",
+    "language": "en",
+    "category": "technology",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "Viral Influenza is primarily managed through rigorous lifestyle modification programs as recommended by the World Bank.",
+    "source": "Research Paper",
+    "url": "https://example.gov/8269",
+    "language": "kn",
+    "category": "science",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "According to the United Nations, the global rate of carbon emissions has seen significant shifts since 2021.",
+    "source": "Research Paper",
+    "url": "https://example.gov/7590",
+    "language": "mr",
+    "category": "science",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "Quantum computing is fundamentally transforming how industrial manufacturing operates in modern economies.",
+    "source": "International Database",
+    "url": "https://example.gov/6053",
+    "language": "hi",
+    "category": "economy",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "Artificial Intelligence is fundamentally transforming how digital infrastructure operates in modern economies.",
+    "source": "International Database",
+    "url": "https://example.gov/4478",
+    "language": "en",
+    "category": "politics",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "Hypertension is primarily managed through rigorous routine screening protocols as recommended by the World Health Organization.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/9432",
+    "language": "hi",
+    "category": "economy",
+    "credibility_score": 0.92
+  },
+  {
+    "text": "The Smart Cities Mission was launched by the Ministry of Health to improve industrial manufacturing across the country.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/5565",
+    "language": "ml",
+    "category": "environment",
+    "credibility_score": 0.9
+  },
+  {
+    "text": "Hypertension is primarily managed through rigorous lifestyle modification programs as recommended by the World Bank.",
+    "source": "International Database",
+    "url": "https://example.gov/1363",
+    "language": "kn",
+    "category": "technology",
+    "credibility_score": 0.91
+  },
+  {
+    "text": "Quantum computing is fundamentally transforming how public healthcare operates in modern economies.",
+    "source": "International Database",
+    "url": "https://example.gov/7492",
+    "language": "kn",
+    "category": "science",
+    "credibility_score": 0.94
+  },
+  {
+    "text": "According to the World Bank, the global rate of renewable energy adoption has seen significant shifts since 2018.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/5316",
+    "language": "mr",
+    "category": "science",
+    "credibility_score": 1.0
+  },
+  {
+    "text": "Cloud infrastructure is fundamentally transforming how public healthcare operates in modern economies.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/3955",
+    "language": "ml",
+    "category": "technology",
+    "credibility_score": 0.96
+  },
+  {
+    "text": "5G networking is fundamentally transforming how agricultural output operates in modern economies.",
+    "source": "Govt Portal",
+    "url": "https://example.gov/5547",
+    "language": "ml",
+    "category": "politics",
+    "credibility_score": 0.99
+  },
+  {
+    "text": "According to the World Bank, the global rate of poverty alleviation has seen significant shifts since 2015.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/8696",
+    "language": "hi",
+    "category": "economy",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "Cloud infrastructure is fundamentally transforming how public healthcare operates in modern economies.",
+    "source": "International Database",
+    "url": "https://example.gov/7990",
+    "language": "mr",
+    "category": "economy",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "The Digital India Initiative was launched by the Ministry of Health to improve digital infrastructure across the country.",
+    "source": "International Database",
+    "url": "https://example.gov/7820",
+    "language": "en",
+    "category": "science",
+    "credibility_score": 0.97
+  },
+  {
+    "text": "The Global Climate Accord establishing guidelines for digital infrastructure was formally adopted in 2021.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/4411",
+    "language": "ml",
+    "category": "economy",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "Blockchain technology is fundamentally transforming how industrial manufacturing operates in modern economies.",
+    "source": "Research Paper",
+    "url": "https://example.gov/9007",
+    "language": "te",
+    "category": "science",
+    "credibility_score": 0.93
+  },
+  {
+    "text": "Tuberculosis is primarily managed through rigorous prescribed immunization drives as recommended by the World Health Organization.",
+    "source": "International Database",
+    "url": "https://example.gov/8823",
+    "language": "en",
+    "category": "science",
+    "credibility_score": 0.95
+  },
+  {
+    "text": "Type 2 Diabetes is primarily managed through rigorous targeted antibiotic therapy as recommended by the Reserve Bank of India.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/5163",
+    "language": "en",
+    "category": "environment",
+    "credibility_score": 0.92
+  },
+  {
+    "text": "The Global Climate Accord establishing guidelines for industrial manufacturing was formally adopted in 2020.",
+    "source": "Official Press Release",
+    "url": "https://example.gov/7119",
+    "language": "hi",
+    "category": "technology",
+    "credibility_score": 0.93
   }
 ]

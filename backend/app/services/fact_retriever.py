@@ -5,7 +5,9 @@ import logging
 from qdrant_client import QdrantClient
 from qdrant_client.models import FieldCondition, Filter, MatchValue
 
+from app.config import settings
 from app.services.embedder import get_embedding
+from app.services.retry_utils import retry_call
 
 logger = logging.getLogger(__name__)
 
@@ -20,19 +22,22 @@ def retrieve_evidence(
     """Search verified_facts with language filter and score threshold."""
     try:
         vector = get_embedding(claim)
-        results = client.query_points(
-            collection_name="verified_facts",
-            query=vector,
-            query_filter=Filter(
-                should=[
-                    FieldCondition(key="language", match=MatchValue(value=language)),
-                    FieldCondition(key="language", match=MatchValue(value="en")),
-                ]
-            ),
-            with_payload=True,
-            limit=top_k,
-            score_threshold=score_threshold,
-        ).points
+        results = retry_call(
+            lambda: client.query_points(
+                collection_name="verified_facts",
+                query=vector,
+                query_filter=Filter(
+                    should=[
+                        FieldCondition(key="language", match=MatchValue(value=language)),
+                        FieldCondition(key="language", match=MatchValue(value="en")),
+                    ]
+                ),
+                with_payload=True,
+                limit=top_k,
+                score_threshold=score_threshold,
+            ).points,
+            attempts=settings.qdrant_retries,
+        )
     except Exception as e:
         logger.error("Evidence retrieval failed: %s", e)
         return []
@@ -62,18 +67,21 @@ def find_matching_misinfo(
     """Search misinfo_patterns with language filter."""
     try:
         vector = get_embedding(claim)
-        results = client.query_points(
-            collection_name="misinfo_patterns",
-            query=vector,
-            query_filter=Filter(
-                should=[
-                    FieldCondition(key="language", match=MatchValue(value=language)),
-                    FieldCondition(key="language", match=MatchValue(value="en")),
-                ]
-            ),
-            with_payload=True,
-            limit=top_k,
-        ).points
+        results = retry_call(
+            lambda: client.query_points(
+                collection_name="misinfo_patterns",
+                query=vector,
+                query_filter=Filter(
+                    should=[
+                        FieldCondition(key="language", match=MatchValue(value=language)),
+                        FieldCondition(key="language", match=MatchValue(value="en")),
+                    ]
+                ),
+                with_payload=True,
+                limit=top_k,
+            ).points,
+            attempts=settings.qdrant_retries,
+        )
     except Exception as e:
         logger.error("Misinfo pattern search failed: %s", e)
         return []
@@ -101,13 +109,16 @@ def get_source_credibility(
     """Search source_credibility and return (weighted_score, matched_sources)."""
     try:
         vector = get_embedding(source_text)
-        results = client.query_points(
-            collection_name="source_credibility",
-            query=vector,
-            with_payload=True,
-            limit=top_k,
-            score_threshold=0.3,
-        ).points
+        results = retry_call(
+            lambda: client.query_points(
+                collection_name="source_credibility",
+                query=vector,
+                with_payload=True,
+                limit=top_k,
+                score_threshold=0.3,
+            ).points,
+            attempts=settings.qdrant_retries,
+        )
     except Exception as e:
         logger.error("Source credibility lookup failed: %s", e)
         return 0.5, []

@@ -9,6 +9,7 @@ interface BreakdownChartProps {
 
 const labels: Record<keyof CredibilityBreakdown, { label: string; icon: string }> = {
   ai_generation_score: { label: "AI Generation", icon: "🤖" },
+  web_search_score: { label: "Web Search", icon: "🌐" },
   fact_evidence_score: { label: "Fact Evidence", icon: "📄" },
   source_credibility_score: { label: "Source Trust", icon: "🏛" },
   misinfo_pattern_score: { label: "Misinfo Pattern", icon: "🔍" },
@@ -17,7 +18,11 @@ const labels: Record<keyof CredibilityBreakdown, { label: string; icon: string }
 };
 
 const barColor = (key: string, value: number): string => {
-  const isPositive = key === "fact_evidence_score" || key === "source_credibility_score" || key === "google_factcheck_score";
+  const isPositive =
+    key === "web_search_score" ||
+    key === "fact_evidence_score" ||
+    key === "source_credibility_score" ||
+    key === "google_factcheck_score";
   if (isPositive) {
     return value >= 0.6 ? "bg-satya-500" : value >= 0.3 ? "bg-amber-400" : "bg-red-400";
   }
@@ -25,7 +30,11 @@ const barColor = (key: string, value: number): string => {
 };
 
 const barGlow = (key: string, value: number): string => {
-  const isPositive = key === "fact_evidence_score" || key === "source_credibility_score" || key === "google_factcheck_score";
+  const isPositive =
+    key === "web_search_score" ||
+    key === "fact_evidence_score" ||
+    key === "source_credibility_score" ||
+    key === "google_factcheck_score";
   if (isPositive) {
     return value >= 0.6
       ? "shadow-[0_0_12px_rgba(34,197,94,0.3)]"
@@ -49,6 +58,14 @@ export default function BreakdownChart({ breakdown }: BreakdownChartProps) {
         Signal Breakdown
       </h3>
       {entries.map(([key, value], i) => (
+        // Guard against future backend fields not yet mapped in labels.
+        // Keeps UI stable instead of crashing.
+        (() => {
+          const labelMeta = labels[key] ?? {
+            label: key.replace(/_/g, " "),
+            icon: "•",
+          };
+          return (
         <motion.div
           key={key}
           initial={{ opacity: 0, x: -16 }}
@@ -58,8 +75,8 @@ export default function BreakdownChart({ breakdown }: BreakdownChartProps) {
         >
           <div className="flex items-center justify-between text-[13px]">
             <span className="flex items-center gap-2 text-gray-400">
-              <span className="text-xs">{labels[key].icon}</span>
-              {labels[key].label}
+              <span className="text-xs">{labelMeta.icon}</span>
+              {labelMeta.label}
             </span>
             <span className="font-mono text-xs font-semibold text-gray-500">
               {(value * 100).toFixed(0)}%
@@ -74,6 +91,8 @@ export default function BreakdownChart({ breakdown }: BreakdownChartProps) {
             />
           </div>
         </motion.div>
+          );
+        })()
       ))}
     </div>
   );

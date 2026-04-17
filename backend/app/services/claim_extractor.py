@@ -5,6 +5,7 @@ from openai import AzureOpenAI
 
 from app.config import settings
 from app.services.language_detector import get_language_name
+from app.services.retry_utils import retry_call
 
 logger = logging.getLogger(__name__)
 
@@ -113,15 +114,19 @@ Return JSON:
 def extract_claims(content: str) -> list[str]:
     client = _get_client()
     try:
-        response = client.chat.completions.create(
-            model=settings.azure_openai_deployment,
-            messages=[
-                {"role": "system", "content": CLAIM_SYSTEM},
-                {"role": "user", "content": CLAIM_EXTRACTION_PROMPT.format(content=content[:3000])},
-            ],
-            temperature=0.1,
-            max_tokens=1200,
-            response_format={"type": "json_object"},
+        response = retry_call(
+            lambda: client.chat.completions.create(
+                model=settings.azure_openai_deployment,
+                messages=[
+                    {"role": "system", "content": CLAIM_SYSTEM},
+                    {"role": "user", "content": CLAIM_EXTRACTION_PROMPT.format(content=content[:3000])},
+                ],
+                temperature=0.1,
+                max_tokens=1200,
+                response_format={"type": "json_object"},
+                timeout=settings.openai_timeout_seconds,
+            ),
+            attempts=settings.openai_retries,
         )
         raw = response.choices[0].message.content or "{}"
         parsed = json.loads(raw)
@@ -139,15 +144,19 @@ def analyze_propaganda(content: str, language: str) -> dict:
     client = _get_client()
     lang_name = get_language_name(language)
     try:
-        response = client.chat.completions.create(
-            model=settings.azure_openai_deployment,
-            messages=[
-                {"role": "system", "content": PROPAGANDA_SYSTEM},
-                {"role": "user", "content": PROPAGANDA_ANALYSIS_PROMPT.format(content=content[:3000], language=lang_name)},
-            ],
-            temperature=0.2,
-            max_tokens=1000,
-            response_format={"type": "json_object"},
+        response = retry_call(
+            lambda: client.chat.completions.create(
+                model=settings.azure_openai_deployment,
+                messages=[
+                    {"role": "system", "content": PROPAGANDA_SYSTEM},
+                    {"role": "user", "content": PROPAGANDA_ANALYSIS_PROMPT.format(content=content[:3000], language=lang_name)},
+                ],
+                temperature=0.2,
+                max_tokens=1000,
+                response_format={"type": "json_object"},
+                timeout=settings.openai_timeout_seconds,
+            ),
+            attempts=settings.openai_retries,
         )
         raw = response.choices[0].message.content or "{}"
         return json.loads(raw)
