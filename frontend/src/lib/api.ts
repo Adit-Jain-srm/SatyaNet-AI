@@ -1,4 +1,25 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+function getApiBase(): string {
+  const manual = process.env.NEXT_PUBLIC_API_URL?.trim();
+  if (manual) return manual.replace(/\/$/, "");
+
+  const vercelService = process.env.NEXT_PUBLIC_BACKEND_URL?.trim();
+  if (vercelService) return vercelService.replace(/\/$/, "");
+
+  if (typeof window !== "undefined") {
+    const { hostname } = window.location;
+    if (hostname === "localhost" || hostname === "127.0.0.1") {
+      return "http://localhost:8000";
+    }
+    return `${window.location.origin}/_/backend`;
+  }
+
+  const serverBackend = process.env.BACKEND_URL?.trim();
+  if (serverBackend) return serverBackend.replace(/\/$/, "");
+
+  return "http://localhost:8000";
+}
+
+const API_URL = getApiBase();
 
 export interface SourceScore {
   source: string;
