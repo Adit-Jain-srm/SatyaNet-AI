@@ -4,6 +4,10 @@
 
 SatyaNet ("Satya" = Truth in Sanskrit) is a multi-modal, multilingual misinformation detection and counter-response system. It goes beyond passive detection to actively build trust -- telling users *why* something is misleading, providing *verified alternative information*, and explaining the reasoning behind every verdict.
 
+## Project description
+
+SatyaNet-AI is an end-to-end misinformation analysis stack: a **FastAPI** backend and **Next.js** frontend that ingest text, URLs, images, audio, or video; retrieve evidence from **Qdrant** collections and live sources (**Bright Data** web search, **Google Fact Check Tools**, **News API**); and use **Azure OpenAI** for claim extraction, explanation, and a GPT-based final verdict with transparent signal breakdowns, counter-content, and shareable summaries—plus forensics-only modes for uploads without extractable factual claims.
+
 Built by **Team Arize**.
 
 ---
@@ -97,7 +101,7 @@ User Input (Text / Image / Audio / Video / URL)
 
 | Layer | Technology |
 |-------|-----------|
-| Backend | Python 3.11, FastAPI |
+| Backend | Python 3.12, FastAPI |
 | Frontend | Next.js 14, Tailwind CSS, Framer Motion, TypeScript |
 | Vector DB | **Qdrant Cloud** (3 collections, payload indexing, filtered semantic search, score thresholds) |
 | Embeddings | `paraphrase-multilingual-MiniLM-L12-v2` via FastEmbed (384 dims, cosine) |
@@ -105,6 +109,27 @@ User Input (Text / Image / Audio / Video / URL)
 | Fact-Checking | Google Fact Check Tools API |
 | News | News API (live article retrieval) |
 | Translation | Azure Translator (detection + cross-lingual search) |
+
+---
+
+## Additional notes
+
+Glossary of terms used across docs and the UI:
+
+- **Response layer** — Final architectural tier that generates human-readable explanations, counter-content, shareable summaries, and verdict reasons (not just a label).
+- **Diagnostic signal engine** — Seven transparency signals (AI generation, web search, fact evidence, source trust, misinfo pattern, emotional tone, Google fact-check) shown in the UI; the **final** credibility verdict is produced by the **GPT judge** using holistic reasoning, not a fixed 0–100 weighted formula in code.
+- **Verdict scale** — API verdicts: `true`, `unverified`, `misleading`, `false`; credibility is a **0–1** score in responses (display may show 0–100%).
+- **Pipeline trace** — Transparent list of internal steps returned with each analysis so users can audit what ran.
+- **Counter-content** — Verified or better-grounded factual alternatives and citations intended to debunk or contextualize misleading claims.
+- **Propaganda analysis** — LLM-based scan for emotional manipulation, sensationalism, and rhetorical patterns (feeds the emotional-tone signal).
+- **Claim extraction** — LLM-driven isolation of verifiable factual claims from raw text (skipped for image/video forensics-only uploads without OCR/transcript).
+- **Qdrant collections** — Vector stores: `verified_facts`, `misinfo_patterns`, `source_credibility` (domain trust), queried with embeddings and payload filters.
+- **Cross-lingual search** — Non-English claims can be translated to English so retrieval can match a broader slice of the database, then merged with in-language hits.
+- **Heuristic fallback** — When Vision (image) or full models are unavailable, pixel/noise and block-level heuristics still produce authenticity signals.
+- **WhatsApp summary** — Short, shareable text field formatted for messaging apps.
+- **Payload filtering** — Metadata (`language`, `category`, etc.) restricts which vectors participate in similarity search for precision and speed.
+- **Spectral flatness** — Audio heuristic signal used alongside temporal features for synthetic-voice / clone-style detection.
+- **Block-level noise** — Video heuristic: variance across spatial blocks in sampled frames to flag inconsistent or manipulated footage (hackathon-scope sampling).
 
 ---
 
@@ -229,7 +254,7 @@ SatyaNet uses advanced prompting techniques across all LLM calls:
 
 ### Prerequisites
 
-- Python 3.11+ with venv
+- Python 3.12+ with venv
 - Node.js 18+
 - Azure OpenAI API key (GPT-4o deployment)
 - Qdrant Cloud account (or local Docker)
