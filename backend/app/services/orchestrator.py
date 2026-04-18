@@ -75,6 +75,7 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
 
     image_result = None
     ai_gen_score = 0.0
+    image_forensics_only = False
 
     if request.content_type == ContentType.IMAGE:
         img_analysis = analyze_image_content(request.content)
@@ -86,6 +87,7 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
         extracted_text = img_analysis.get("extracted_text", "")
         text_claims_from_image = img_analysis.get("text_claims", [])
         description = img_analysis.get("description", "")
+        manipulation_probability = float(img_analysis.get("manipulation_probability", 0.0))
 
         if extracted_text.strip():
             text_content = extracted_text
@@ -99,6 +101,64 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
         else:
             text_content = "(Image content submitted for analysis)"
             log.append("Image: no text or claims found in image")
+            image_forensics_only = True
+
+        # Only OCR-detected text should trigger factual claim verification.
+        # Vision-generated scene descriptions/text_claims for ordinary photos can be
+        # over-interpreted and should remain in forensics-only mode.
+        if not extracted_text.strip():
+            image_forensics_only = True
+
+        if image_forensics_only:
+            # Keep language deterministic for scene-only images to avoid accidental
+            # mis-detection from short/ambiguous visual descriptions.
+            if not request.language:
+                language = "en"
+                detection_method = "image_forensics_default"
+                log.append("Image mode: forensics-only path (no factual text claims detected)")
+
+            authenticity_score = max(0.0, min(1.0, 1.0 - max(ai_gen_score, manipulation_probability)))
+            log.append(f"Image authenticity score: {authenticity_score:.1%}")
+
+            return AnalysisResponse(
+                credibility_score=round(authenticity_score, 3),
+                verdict=Verdict.UNVERIFIED,
+                verdict_reason=(
+                    "Image analyzed via forensics only. No verifiable factual text claims were detected, "
+                    "so factual truth verdict is marked as unverified."
+                ),
+                detected_language=language,
+                detection_method=detection_method,
+                claims=[],
+                breakdown=CredibilityBreakdown(
+                    ai_generation_score=ai_gen_score,
+                    web_search_score=0.5,
+                    fact_evidence_score=0.0,
+                    source_credibility_score=0.5,
+                    misinfo_pattern_score=0.0,
+                    emotional_language_score=0.0,
+                    google_factcheck_score=0.5,
+                ),
+                explanation=(
+                    "This upload appears to be a personal/scene photo. SatyaNet ran image forensics "
+                    "(AI-generation and manipulation checks) and did not run factual web claim verification "
+                    "because no textual claim was detected in the image."
+                ),
+                counter_content=(
+                    "For this type of image, treat the result as authenticity guidance, not a fact-check verdict. "
+                    "If you want factual verification, add a text claim or upload an image containing claim text."
+                ),
+                shareable_summary=(
+                    "Image analyzed in forensics-only mode. No text claim detected, so factual verdict is unverified."
+                ),
+                image_analysis=image_result,
+                audio_analysis=None,
+                video_analysis=None,
+                news_articles=[],
+                external_factchecks=[],
+                processing_log=log,
+                qdrant_stats=[],
+            )
 
     audio_result = None
     if request.content_type == ContentType.AUDIO:
@@ -112,9 +172,59 @@ async def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
     if request.content_type == ContentType.VIDEO:
         vid_analysis = analyze_video_content(request.content)
         video_result = VideoAnalysisResult(**vid_analysis)
-        ai_gen_score = max(ai_gen_score, vid_analysis["deepfake_probability"])
+        deepfake_prob = float(vid_analysis.get("deepfake_probability", 0.0))
+        ai_gen_score = max(ai_gen_score, deepfake_prob)
         text_content = text_content or "(Video content submitted for analysis)"
-        log.append(f"Video analysis: deepfake probability {vid_analysis['deepfake_probability']:.1%}")
+        log.append(f"Video analysis: deepfake probability {deepfake_prob:.1%}")
+
+        # No transcript or on-screen OCR in the current pipeline — same as image forensics:
+        # do not run factual Qdrant/web claim verification on placeholder or heuristic-only content.
+        if not request.language:
+            language = "en"
+            detection_method = "video_forensics_default"
+            log.append("Video mode: forensics-only path (no factual text claims extracted from video)")
+
+        authenticity_score = max(0.0, min(1.0, 1.0 - deepfake_prob))
+        log.append(f"Video authenticity score: {authenticity_score:.1%}")
+
+        return AnalysisResponse(
+            credibility_score=round(authenticity_score, 3),
+            verdict=Verdict.UNVERIFIED,
+            verdict_reason=(
+                "Video analyzed via forensics only. No verifiable transcript or on-screen text claim "
+                "was extracted, so factual truth verdict is marked as unverified."
+            ),
+            detected_language=language,
+            detection_method=detection_method,
+            claims=[],
+            breakdown=CredibilityBreakdown(
+                ai_generation_score=deepfake_prob,
+                web_search_score=0.5,
+                fact_evidence_score=0.0,
+                source_credibility_score=0.5,
+                misinfo_pattern_score=0.0,
+                emotional_language_score=0.0,
+                google_factcheck_score=0.5,
+            ),
+            explanation=(
+                "This upload is a video file. SatyaNet ran video forensics (deepfake/heuristic frame signals) "
+                "and did not run factual web claim verification because no transcript or claim text was extracted."
+            ),
+            counter_content=(
+                "Treat this as authenticity and manipulation guidance, not a fact-check of spoken or implied claims. "
+                "Add a text claim or use content with clear on-screen text for factual verification when supported."
+            ),
+            shareable_summary=(
+                "Video analyzed in forensics-only mode. No text claim extracted; factual verdict is unverified."
+            ),
+            image_analysis=None,
+            audio_analysis=None,
+            video_analysis=video_result,
+            news_articles=[],
+            external_factchecks=[],
+            processing_log=log,
+            qdrant_stats=[],
+        )
 
     claims = _safe_extract_claims(text_content)
     log.append(f"Claim extraction: {len(claims)} claim(s) found")
