@@ -383,6 +383,40 @@ Recommended go-to-market order: **B2B API -> Enterprise dashboard -> Consumer fr
 
 ---
 
+## Demo video script
+
+Pitch-style narration for a live walkthrough—short sentences, momentum, outcome-first. Trim or expand per slot length.
+
+### 1. Hook — what we built
+
+“Most tools give you a label and disappear. **SatyaNet-AI** is different: a **truth engine** that meets people where misinformation actually spreads—**text, images, audio, video, URLs**—and works **multilingual** by design. **Next.js** up front, **FastAPI** in the back, **GPT-4o** doing the heavy lifting on understanding—not just keyword matching.”
+
+### 2. The moment of truth — input
+
+“Watch what happens when someone forwards a scary headline. We paste a high-stakes claim—*‘Government has banned all UPI transactions in India’*—and hit **Analyze Content**. One click. That request drives **`POST /analyze`**: we isolate the claim, embed it, and go hunt for evidence before we ever dare to score it.”
+
+### 3. Why the score means something — processing
+
+“Under the hood we’re not guessing. **Qdrant** powers **RAG** across **`verified_facts`**, **`misinfo_patterns`**, and **`source_credibility`**—filtered vector search with **FastEmbed** embeddings—then we layer in **live web** (**Bright Data**), **Google Fact Check Tools**, and **News API** so stale training data doesn’t decide today’s news. The **`credibility_score`** and **`verdict`** come from a **GPT final judge** that reads the *whole* evidence package—signals plus sources—not a toy points formula baked into code.”
+
+### 4. Trust is transparent — signal breakdown
+
+“This is the slide judges care about: **explainability**. You see the **diagnostic signals**—fact evidence, domain trust, known misinfo patterns, emotional manipulation, web corroboration, fact-check alignment, and more—so the product doesn’t say *trust me*; it shows its work. Transparency isn’t a footnote; it’s the product.”
+
+### 5. Verdict with receipts — reasoning
+
+“We don’t stop at *false*. We show **`verdict_reason`**: a grounded narrative tied to what we retrieved—think **RBI** / **PIB**-class facts when the evidence supports it. That’s the difference between a chatbot opinion and an **audit trail** a user can actually defend in a group chat.”
+
+### 6. From detection to action — counter-content
+
+“Here’s the viral loop: **counter-content** with citations, plus a **shareable summary** ready for **WhatsApp**. We’re not just debunking—we’re giving people language they can **forward** to stop the chain before it becomes a crisis.”
+
+### 7. Close — the one-liner
+
+“**SatyaNet-AI**: retrieval-grounded, multi-source, judge-mediated verification—with a **pipeline trace** you can point to. In a world drowning in noise, we built a system that doesn’t just flag lies—it **explains**, **corrects**, and **arms** the next person in the chain. Verify before you amplify. Thank you.”
+
+---
+
 ## Team
 
 Built by **Team Arize**.
