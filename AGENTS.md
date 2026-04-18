@@ -59,7 +59,7 @@ Uses Qdrant Cloud for RAG, Azure OpenAI GPT-4o, Google Fact Check API, News API,
 ## Architecture Rules
 
 ### Backend
-- Python 3.11+ / FastAPI in `backend/`
+- Python 3.12+ / FastAPI in `backend/`
 - Venv at `.venv/` (root level)
 - Config via pydantic-settings, .env at repo root
 - All services in `backend/app/services/`, routers in `backend/app/routers/`
