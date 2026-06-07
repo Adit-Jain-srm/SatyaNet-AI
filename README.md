@@ -1,4 +1,21 @@
+<div align="center">
+
 # SatyaNet-AI
+
+**AI-Powered Deepfake Detection System**
+
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-FF6F00?logo=tensorflow&logoColor=white)](https://tensorflow.org/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-Computer_Vision-5C3EE8?logo=opencv)](https://opencv.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit)](https://streamlit.io/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/Adit-Jain-srm/SatyaNet-AI)](https://github.com/Adit-Jain-srm/SatyaNet-AI)
+
+*Detecting AI-generated deepfakes using advanced neural network architectures.*
+
+</div>
+
+---
 
 **AI-Powered Misinformation Detection & Counter-Response System**
 
